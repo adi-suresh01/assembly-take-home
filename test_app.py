@@ -1,4 +1,7 @@
+import os
+import wave
 from collections import Counter
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -15,6 +18,8 @@ from evals.metrics import (
     term_accuracy,
     wer,
 )
+from evals.providers import STREAMERS, read_pcm16
+from evals.run import select_clips
 
 
 # --- agent helpers -----------------------------------------------------------
@@ -104,3 +109,37 @@ def test_summarize_skips_errors():
     s = summarize([ok, no_eot, err])["assemblyai"]
     assert s["errors"] == 1 and s["no_eot"] == 1
     assert s["mistakes_kept"] == "2/2" and s["latency_p50_ms"] == 300.0
+
+
+# --- streaming + runner --------------------------------------------------------
+
+def test_read_pcm16_rejects_wrong_format(tmp_path):
+    p = tmp_path / "bad.wav"
+    with wave.open(str(p), "wb") as w:
+        w.setnchannels(2)
+        w.setsampwidth(2)
+        w.setframerate(44100)
+        w.writeframes(b"\0" * 400)
+    with pytest.raises(ValueError, match="16 kHz mono"):
+        read_pcm16(p)
+
+
+def test_select_clips_reports_missing(tmp_path):
+    (tmp_path / "Q01.wav").write_bytes(b"")
+    clips = [{"id": "Q01", "category": "Q"}, {"id": "M01", "category": "M"}]
+    present, missing = select_clips(clips, tmp_path, None)
+    assert [c["id"] for c in present] == ["Q01"] and missing == ["M01"]
+    assert select_clips(clips, tmp_path, {"M"}) == ([], ["M01"])
+
+
+@pytest.mark.parametrize("provider,key", [("assemblyai", "ASSEMBLYAI_API_KEY"), ("deepgram", "DEEPGRAM_API_KEY")])
+@pytest.mark.asyncio
+async def test_live_stream_smoke(provider, key):
+    from dotenv import load_dotenv
+    load_dotenv()
+    clip = Path("evals/clips/A01.wav")
+    if not os.getenv(key) or not clip.exists():
+        pytest.skip("needs key and recorded clip")
+    cfg = yaml.safe_load(open("config.yaml"))
+    r = await STREAMERS[provider](read_pcm16(clip), cfg[provider], cfg["languages"])
+    assert r.error is None and r.turns and "estacion" in normalize(r.text)
