@@ -18,7 +18,7 @@ from evals.metrics import (
     term_accuracy,
     wer,
 )
-from evals.providers import STREAMERS, read_pcm16
+from evals.providers import STREAMERS, assemblyai_query, read_pcm16
 from evals.run import select_clips
 
 
@@ -30,10 +30,24 @@ def test_make_stt_selects_provider(monkeypatch):
     cfg = yaml.safe_load(open("config.yaml"))
     from livekit.plugins import assemblyai, deepgram
 
-    assert isinstance(make_stt("assemblyai", cfg), assemblyai.STT)
+    aai = make_stt("assemblyai", cfg)
+    assert isinstance(aai, assemblyai.STT)
+    # AssemblyAI's published voice-agent preset decides the silence windows, not the plugin's 100 ms.
+    assert aai._opts.mode == "balanced"
+    assert not isinstance(aai._opts.min_turn_silence, int)
+    assert not isinstance(aai._opts.max_turn_silence, int)
     assert isinstance(make_stt("deepgram", cfg), deepgram.STTv2)
     with pytest.raises(ValueError):
         make_stt("whisper", cfg)
+
+
+def test_eval_assemblyai_query_uses_published_preset():
+    cfg = yaml.safe_load(open("config.yaml"))
+    q = assemblyai_query(cfg["assemblyai"], cfg["languages"], 16000)
+    assert q["mode"] == "balanced"
+    assert q["speech_model"] == "assemblyai-stt-3-7-realtime-agent"
+    assert q["language_codes"] == '["en", "es"]'
+    assert "min_turn_silence" not in q and "max_turn_silence" not in q
 
 
 def test_format_turn_line():

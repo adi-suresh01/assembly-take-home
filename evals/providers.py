@@ -99,19 +99,21 @@ def _parse_deepgram(msg: dict):
     return None, "", None
 
 
-async def stream_assemblyai(samples, cfg: dict, languages: list[str], *, sample_rate=16000, trailing_s=2.0):
-    # Same query parameters the LiveKit plugin sends for this config (see config.yaml).
-    query = {
+def assemblyai_query(cfg: dict, languages: list[str], sample_rate: int) -> dict:
+    """The same query parameters the LiveKit plugin sends for this config (see config.yaml)."""
+    return {
         "sample_rate": sample_rate,
         "encoding": "pcm_s16le",
         "speech_model": cfg["model"],
-        "min_turn_silence": cfg["min_turn_silence"],
-        "max_turn_silence": cfg["max_turn_silence"],
+        "mode": cfg["mode"],
         "language_detection": "true",
         "language_codes": json.dumps(languages),
         "previous_context_n_turns": cfg["previous_context_n_turns"],
     }
-    url = "wss://streaming.assemblyai.com/v3/ws?" + urlencode(query)
+
+
+async def stream_assemblyai(samples, cfg: dict, languages: list[str], *, sample_rate=16000, trailing_s=2.0):
+    url = "wss://streaming.assemblyai.com/v3/ws?" + urlencode(assemblyai_query(cfg, languages, sample_rate))
     headers = {"Authorization": os.environ.get("ASSEMBLYAI_API_KEY", "")}
     return await _stream("assemblyai", url, headers, samples, cfg["chunk_ms"], sample_rate, trailing_s,
                          {"type": "Terminate"}, _parse_assemblyai)

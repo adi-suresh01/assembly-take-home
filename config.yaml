@@ -9,8 +9,9 @@ languages: [en, es]
 
 assemblyai:
   model: assemblyai-stt-3-7-realtime-agent  # the LiveKit plugin's default model; it sends this as `speech_model`
-  min_turn_silence: 100       # AssemblyAI API default
-  max_turn_silence: 1000      # AssemblyAI API default (the LiveKit plugin would otherwise use 100 ms)
+  mode: balanced              # AssemblyAI's published voice-agent preset (server default): it sets
+                              # min_turn_silence 128 ms / max_turn_silence 1280 ms. Setting a mode also
+                              # stops the LiveKit plugin from forcing its own 100 ms min_turn_silence.
   previous_context_n_turns: 0 # no carryover of prior turns as context
   # Automatic agent_context is turned off in agent.py via
   # AgentSession(stt_context_options={"forward_chat_context": False}).
@@ -25,7 +26,8 @@ deepgram:
 
 tts:
   model: assemblyai-tts-1
-  voice: aai-antonioluis      # Spanish voice; the bilingual spike in Task 2 may change this
+  voice: aai-antonioluis      # native Spanish voice: the phrases learners copy must sound right;
+                              # the English explanations come out with a Spanish accent, like a real tutor
   language: es
 
 sample_rate: 16000

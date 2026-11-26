@@ -63,8 +63,7 @@ def make_stt(provider: str, cfg: dict):
         c = cfg["assemblyai"]
         return assemblyai.STT(
             model=c["model"],
-            min_turn_silence=c["min_turn_silence"],
-            max_turn_silence=c["max_turn_silence"],
+            mode=c["mode"],
             previous_context_n_turns=c["previous_context_n_turns"],
             language_codes=cfg["languages"],
         )

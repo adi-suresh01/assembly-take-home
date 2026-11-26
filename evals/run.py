@@ -1,6 +1,6 @@
 """Run the STT eval: stream every recorded clip through each provider and score it.
 
-    uv run python -m evals.run                         # all clips, both providers
+    uv run python -m evals.run                         # all clips, both providers, 3 pooled passes
     uv run python -m evals.run --only M,H01 --verbose  # some ids/categories, show transcripts
     uv run python -m evals.run --providers assemblyai
 """
@@ -53,39 +53,45 @@ def score(clip: dict, provider: str, result, end_s: float) -> dict:
     }
 
 
-async def run(providers: list[str], only: set[str] | None, verbose: bool) -> dict:
+async def run(providers: list[str], only: set[str] | None, verbose: bool, repeats: int = 1) -> dict:
     cfg = yaml.safe_load(open(ROOT / "config.yaml"))
     clips, missing = select_clips(yaml.safe_load(open(ROOT / "evals" / "clips.yaml")), CLIPS_DIR, only)
     if missing:
         console.print(f"[yellow]{len(missing)} clips missing (not recorded yet): {', '.join(missing)}[/]")
-    rows, per_clip = [], []
-    for i, clip in enumerate(clips):
-        samples = read_pcm16(CLIPS_DIR / f"{clip['id']}.wav", cfg["sample_rate"])
-        end_s = speech_end_s(samples, cfg["sample_rate"])
-        order = providers if i % 2 == 0 else providers[::-1]  # spread network noise evenly
-        results = {}
-        for p in order:
-            r = await STREAMERS[p](samples, cfg[p], cfg["languages"],
-                                   sample_rate=cfg["sample_rate"], trailing_s=cfg["trailing_silence_s"])
-            row = score(clip, p, r, end_s)
-            rows.append(row)
-            results[p] = {k: v for k, v in row.items() if k not in ("provider", "id", "category")}
-        console.print(f"[dim]{i + 1}/{len(clips)} {clip['id']}[/] " +
-                      "  ".join(f"{p}: {'ERR' if results[p]['error'] else results[p]['wer']}" for p in providers))
-        if verbose:
-            console.print(f"   ref: {clip['text']}")
-            for p in providers:
-                console.print(f"   {p}: {results[p]['text'] or results[p]['error']}")
-        per_clip.append({"id": clip["id"], "category": clip["category"], "reference": clip["text"],
-                         "speech_end_s": round(end_s, 3), "results": results})
+    audio = {}
+    for c in clips:
+        samples = read_pcm16(CLIPS_DIR / f"{c['id']}.wav", cfg["sample_rate"])
+        audio[c["id"]] = (samples, speech_end_s(samples, cfg["sample_rate"]))
+    per_clip = {c["id"]: {"id": c["id"], "category": c["category"], "reference": c["text"],
+                          "speech_end_s": round(audio[c["id"]][1], 3), "results": {p: [] for p in providers}}
+                for c in clips}
+    rows = []
+    # Whole passes over the clip set, so a slow network moment lands on one pass of one clip.
+    for rep in range(repeats):
+        for i, clip in enumerate(clips):
+            samples, end_s = audio[clip["id"]]
+            order = providers if (i + rep) % 2 == 0 else providers[::-1]  # spread network noise evenly
+            results = per_clip[clip["id"]]["results"]
+            for p in order:
+                r = await STREAMERS[p](samples, cfg[p], cfg["languages"],
+                                       sample_rate=cfg["sample_rate"], trailing_s=cfg["trailing_silence_s"])
+                row = score(clip, p, r, end_s)
+                rows.append(row)
+                results[p].append({k: v for k, v in row.items() if k not in ("provider", "id", "category")})
+            console.print(f"[dim]pass {rep + 1}/{repeats} {i + 1}/{len(clips)} {clip['id']}[/] " + "  ".join(
+                f"{p}: {'ERR' if results[p][-1]['error'] else results[p][-1]['wer']}" for p in providers))
+            if verbose:
+                console.print(f"   ref: {clip['text']}")
+                for p in providers:
+                    console.print(f"   {p}: {results[p][-1]['text'] or results[p][-1]['error']}")
     return {
         "run": {"timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "platform": platform.platform(), "providers": providers,
+                "platform": platform.platform(), "providers": providers, "repeats": repeats,
                 "clips_evaluated": len(clips), "clips_missing": missing},
         "config": {"languages": cfg["languages"], "sample_rate": cfg["sample_rate"],
                    "trailing_silence_s": cfg["trailing_silence_s"], **{p: cfg[p] for p in providers}},
         "summary": summarize(rows),
-        "clips": per_clip,
+        "clips": list(per_clip.values()),
     }
 
 
@@ -111,10 +117,11 @@ def main() -> None:
     ap.add_argument("--providers", default="assemblyai,deepgram")
     ap.add_argument("--only", help="comma-separated clip ids or categories")
     ap.add_argument("--verbose", action="store_true")
+    ap.add_argument("--repeats", type=int, default=3, help="passes over the clip set; results are pooled")
     args = ap.parse_args()
     load_dotenv(ROOT / ".env")
     report = asyncio.run(run(args.providers.split(","),
-                             set(args.only.split(",")) if args.only else None, args.verbose))
+                             set(args.only.split(",")) if args.only else None, args.verbose, args.repeats))
     print_table(report["summary"])
     RESULTS.parent.mkdir(exist_ok=True)
     RESULTS.write_text(json.dumps(report, indent=2, ensure_ascii=False))
