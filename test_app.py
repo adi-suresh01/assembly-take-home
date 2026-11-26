@@ -1,10 +1,20 @@
 from collections import Counter
 
+import numpy as np
 import pytest
 import yaml
 
 from agent import format_turn_line, make_stt
-from evals.metrics import normalize
+from evals.metrics import (
+    cutoffs,
+    latency_ms,
+    mistake_kept,
+    normalize,
+    speech_end_s,
+    summarize,
+    term_accuracy,
+    wer,
+)
 
 
 # --- agent helpers -----------------------------------------------------------
@@ -39,3 +49,58 @@ def test_clips_yaml_is_consistent():
             assert normalize(c["error_word"]) in words and c["correct"]
         if c["category"] == "H":
             assert c["pause"] is True and "..." in c["text"]
+
+
+# --- metrics -----------------------------------------------------------------
+
+def test_normalize():
+    assert normalize("¿Dónde está la Estación?") == "donde esta la estacion"
+    assert normalize("How do you say... butterfly?") == "how do you say butterfly"
+
+
+def test_wer():
+    assert wer("yo soy estudiante", "Yo es estudiante.") == pytest.approx(1 / 3)
+
+
+def test_term_accuracy():
+    assert term_accuracy(["la estación", "mariposa"], "is it la estacion or el estación") == 0.5
+    assert term_accuracy(["la estación"], "la estacion", accents=True) == 0.0
+    assert term_accuracy([], "anything") is None
+
+
+def test_mistake_kept_whole_word():
+    assert mistake_kept("es", "Yo es estudiante.")
+    assert not mistake_kept("es", "Yo soy estudiante.")  # "es" inside "estudiante" doesn't count
+
+
+def test_speech_end_s():
+    sr = 16000
+    tone = (0.5 * np.sin(2 * np.pi * 220 * np.arange(sr) / sr) * 32767).astype(np.int16)
+    audio = np.concatenate([np.zeros(sr, np.int16), tone, np.zeros(sr, np.int16)])
+    assert speech_end_s(audio, sr) == pytest.approx(2.0, abs=0.05)
+
+
+def test_cutoffs_and_latency():
+    assert cutoffs([1.2, 3.4], 3.0) == 1
+    assert latency_ms([1.2, 3.4], 3.0) == pytest.approx(400)
+
+
+def test_latency_none_without_eot():
+    assert latency_ms([], 3.0) is None
+    assert latency_ms([1.0], 3.0) is None
+
+
+def test_empty_hypothesis():
+    assert wer("hola", "") == 1.0
+    assert term_accuracy(["hola"], "") == 0.0
+    assert not mistake_kept("es", "")
+
+
+def test_summarize_skips_errors():
+    ok = dict(provider="assemblyai", category="M", error=None, wer=0.2, term_acc=None,
+              term_acc_accents=None, mistake_kept=True, cutoffs=0, latency_ms=300.0)
+    no_eot = {**ok, "latency_ms": None}
+    err = {**ok, "error": "401", "wer": None}
+    s = summarize([ok, no_eot, err])["assemblyai"]
+    assert s["errors"] == 1 and s["no_eot"] == 1
+    assert s["mistakes_kept"] == "2/2" and s["latency_p50_ms"] == 300.0
