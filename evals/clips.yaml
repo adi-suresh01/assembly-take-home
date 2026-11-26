@@ -1,0 +1,36 @@
+# One entry per recorded clip (evals/clips/<id>.wav).
+# `text` is both what you read aloud and the reference transcript.
+# Categories:
+#   Q  English questions with Spanish words in them (code-switching)
+#   A  Attempts at a Spanish phrase, said as well as you can
+#   M  Attempts with a deliberate real-word mistake: say `text` exactly (wrong on purpose)
+#   H  English questions with a ~1–1.5 s hesitation where "..." appears
+
+- {id: Q01, category: Q, text: "Is it la estación or el estación?", spanish_terms: [la estación, el estación]}
+- {id: Q02, category: Q, text: "What does dónde está el baño mean?", spanish_terms: [dónde está el baño]}
+- {id: Q03, category: Q, text: "How do I pronounce mariposa?", spanish_terms: [mariposa]}
+- {id: Q04, category: Q, text: "What's the difference between ser and estar?", spanish_terms: [ser, estar]}
+- {id: Q05, category: Q, text: "Can you slow down and repeat buenas noches?", spanish_terms: [buenas noches]}
+- {id: Q06, category: Q, text: "Is tengo hambre the same as estoy hambriento?", spanish_terms: [tengo hambre, estoy hambriento]}
+- {id: Q07, category: Q, text: "When do I use por and when do I use para?", spanish_terms: [por, para]}
+- {id: Q08, category: Q, text: "How do I say I would like a coffee, quisiera un café?", spanish_terms: [quisiera un café]}
+
+- {id: A01, category: A, text: "¿Dónde está la estación de tren?", spanish_terms: [dónde, estación, tren]}
+- {id: A02, category: A, text: "Quisiera un café con leche, por favor.", spanish_terms: [quisiera, café con leche, por favor]}
+- {id: A03, category: A, text: "Mucho gusto, soy estudiante de español.", spanish_terms: [mucho gusto, estudiante, español]}
+- {id: A04, category: A, text: "¿Cuánto cuesta el billete?", spanish_terms: [cuánto cuesta, billete]}
+- {id: A05, category: A, text: "Tengo hambre y quiero comer.", spanish_terms: [tengo hambre, comer]}
+- {id: A06, category: A, text: "La cuenta, por favor.", spanish_terms: [la cuenta, por favor]}
+
+- {id: M01, category: M, text: "¿Dónde está el estación?", error_word: el, correct: "¿Dónde está la estación?"}
+- {id: M02, category: M, text: "Yo es estudiante.", error_word: es, correct: "Yo soy estudiante."}
+- {id: M03, category: M, text: "Tengo hombre.", error_word: hombre, correct: "Tengo hambre."}
+- {id: M04, category: M, text: "Yo tiene veinte años.", error_word: tiene, correct: "Yo tengo veinte años."}
+- {id: M05, category: M, text: "Ella es cansada.", error_word: es, correct: "Ella está cansada."}
+- {id: M06, category: M, text: "Quiero una café.", error_word: una, correct: "Quiero un café."}
+
+- {id: H01, category: H, text: "How do you say... butterfly in Spanish?", pause: true}
+- {id: H02, category: H, text: "Is it... la mariposa or el mariposa?", spanish_terms: [la mariposa, el mariposa], pause: true}
+- {id: H03, category: H, text: "What's the word for... train station?", pause: true}
+- {id: H04, category: H, text: "Can you repeat... buenas noches, slowly?", spanish_terms: [buenas noches], pause: true}
+- {id: H05, category: H, text: "I want to say... I'm hungry, is it tengo hambre?", spanish_terms: [tengo hambre], pause: true}

@@ -1,0 +1,2480 @@
+{
+  "run": {
+    "timestamp": "2026-11-26T20:48:50+00:00",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "providers": [
+      "assemblyai",
+      "deepgram"
+    ],
+    "repeats": 3,
+    "clips_evaluated": 25,
+    "clips_missing": []
+  },
+  "config": {
+    "languages": [
+      "en",
+      "es"
+    ],
+    "sample_rate": 16000,
+    "trailing_silence_s": 4.0,
+    "assemblyai": {
+      "model": "assemblyai-stt-3-7-realtime-agent",
+      "mode": "balanced",
+      "previous_context_n_turns": 0,
+      "chunk_ms": 50
+    },
+    "deepgram": {
+      "model": "flux-general-multi",
+      "chunk_ms": 80
+    }
+  },
+  "summary": {
+    "assemblyai": {
+      "clips": 75,
+      "wer": 0.0642,
+      "wer_by_category": {
+        "Q": 0.0549,
+        "A": 0.0,
+        "M": 0.1667,
+        "H": 0.0333
+      },
+      "term_acc": 0.8824,
+      "term_acc_accents": 0.8824,
+      "mistakes_kept": "12/18",
+      "cutoff_clips": "3/15",
+      "latency_p50_ms": 609.2,
+      "latency_p90_ms": 1741.4,
+      "no_eot": 0,
+      "errors": 0
+    },
+    "deepgram": {
+      "clips": 75,
+      "wer": 0.1686,
+      "wer_by_category": {
+        "Q": 0.1731,
+        "A": 0.0417,
+        "M": 0.3195,
+        "H": 0.1325
+      },
+      "term_acc": 0.6471,
+      "term_acc_accents": 0.6471,
+      "mistakes_kept": "12/18",
+      "cutoff_clips": "3/15",
+      "latency_p50_ms": 510.9,
+      "latency_p90_ms": 803.0,
+      "no_eot": 0,
+      "errors": 0
+    }
+  },
+  "clips": [
+    {
+      "id": "Q01",
+      "category": "Q",
+      "reference": "Is it la estación or el estación?",
+      "speech_end_s": 4.4,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Is it la estación or el estación?",
+            "eot_times": [
+              4.952
+            ],
+            "closed_at": 9.752,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 552.0
+          },
+          {
+            "error": null,
+            "text": "Is it la estación or el estación?",
+            "eot_times": [
+              4.948
+            ],
+            "closed_at": 9.751,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 548.1
+          },
+          {
+            "error": null,
+            "text": "Is it la estación or el estación?",
+            "eot_times": [
+              5.042
+            ],
+            "closed_at": 9.753,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 642.3
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Isidro la estación or el estación?",
+            "eot_times": [
+              5.012
+            ],
+            "closed_at": 9.762,
+            "wer": 0.2857,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 612.0
+          },
+          {
+            "error": null,
+            "text": "Isidro la estación or el estación?",
+            "eot_times": [
+              5.337
+            ],
+            "closed_at": 9.762,
+            "wer": 0.2857,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 936.7
+          },
+          {
+            "error": null,
+            "text": "Isidro la estación or el estación?",
+            "eot_times": [
+              5.011
+            ],
+            "closed_at": 9.763,
+            "wer": 0.2857,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 610.8
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q02",
+      "category": "Q",
+      "reference": "What does dónde está el baño mean?",
+      "speech_end_s": 4.58,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "What does ¿Dónde está el baño? mean.",
+            "eot_times": [
+              5.262
+            ],
+            "closed_at": 9.402,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 681.7
+          },
+          {
+            "error": null,
+            "text": "What does ¿Dónde está el baño? mean.",
+            "eot_times": [
+              5.347
+            ],
+            "closed_at": 9.401,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 767.4
+          },
+          {
+            "error": null,
+            "text": "What does ¿Dónde está el baño? mean.",
+            "eot_times": [
+              5.354
+            ],
+            "closed_at": 9.401,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 773.7
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "What does donde esta Albanio mean?",
+            "eot_times": [
+              4.771
+            ],
+            "closed_at": 9.442,
+            "wer": 0.2857,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 191.0
+          },
+          {
+            "error": null,
+            "text": "What does donde esta Albanio mean?",
+            "eot_times": [
+              4.693
+            ],
+            "closed_at": 9.441,
+            "wer": 0.2857,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 113.0
+          },
+          {
+            "error": null,
+            "text": "What does donde esta Albanio mean?",
+            "eot_times": [
+              4.801
+            ],
+            "closed_at": 9.443,
+            "wer": 0.2857,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 221.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q03",
+      "category": "Q",
+      "reference": "How do I pronounce mariposa?",
+      "speech_end_s": 3.98,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "How do I pronounce mariposa?",
+            "eot_times": [
+              4.512
+            ],
+            "closed_at": 9.352,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 532.3
+          },
+          {
+            "error": null,
+            "text": "How do I pronounce mariposa?",
+            "eot_times": [
+              4.469
+            ],
+            "closed_at": 9.352,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 489.4
+          },
+          {
+            "error": null,
+            "text": "How do I pronounce mariposa?",
+            "eot_times": [
+              4.557
+            ],
+            "closed_at": 9.352,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 577.2
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "How do I pronounce Maripossa?",
+            "eot_times": [
+              4.452
+            ],
+            "closed_at": 9.361,
+            "wer": 0.2,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 471.8
+          },
+          {
+            "error": null,
+            "text": "How do I pronounce Maripossa?",
+            "eot_times": [
+              4.375
+            ],
+            "closed_at": 9.362,
+            "wer": 0.2,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 394.8
+          },
+          {
+            "error": null,
+            "text": "How do I pronounce Maripossa?",
+            "eot_times": [
+              4.491
+            ],
+            "closed_at": 9.363,
+            "wer": 0.2,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 510.9
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q04",
+      "category": "Q",
+      "reference": "What's the difference between ser and estar?",
+      "speech_end_s": 4.98,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.662
+            ],
+            "closed_at": 10.052,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 681.9
+          },
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.726
+            ],
+            "closed_at": 10.051,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 746.3
+          },
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.684
+            ],
+            "closed_at": 10.053,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 703.9
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.451
+            ],
+            "closed_at": 10.082,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 471.4
+          },
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.489
+            ],
+            "closed_at": 10.081,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 509.1
+          },
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.536
+            ],
+            "closed_at": 10.083,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 556.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q05",
+      "category": "Q",
+      "reference": "Can you slow down and repeat buenas noches?",
+      "speech_end_s": 4.24,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Can you slow down and repeat buenos noches?",
+            "eot_times": [
+              5.126
+            ],
+            "closed_at": 9.202,
+            "wer": 0.125,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 886.2
+          },
+          {
+            "error": null,
+            "text": "Can you slow down and repeat buenos noches?",
+            "eot_times": [
+              5.091
+            ],
+            "closed_at": 9.202,
+            "wer": 0.125,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 850.6
+          },
+          {
+            "error": null,
+            "text": "Can you slow down and repeat buenos noches?",
+            "eot_times": [
+              5.151
+            ],
+            "closed_at": 9.202,
+            "wer": 0.125,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 911.1
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Can you slow down and repeat buenos noches?",
+            "eot_times": [
+              4.692
+            ],
+            "closed_at": 9.202,
+            "wer": 0.125,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 451.8
+          },
+          {
+            "error": null,
+            "text": "Can you slow down and repeat buenos noches?",
+            "eot_times": [
+              4.69
+            ],
+            "closed_at": 9.202,
+            "wer": 0.125,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 449.9
+          },
+          {
+            "error": null,
+            "text": "Can you slow down and repeat buenos noches?",
+            "eot_times": [
+              4.831
+            ],
+            "closed_at": 9.202,
+            "wer": 0.125,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 591.3
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q06",
+      "category": "Q",
+      "reference": "Is tengo hambre the same as estoy hambriento?",
+      "speech_end_s": 4.94,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "¿Es tengo hambre the same as estoy hambriento?",
+            "eot_times": [
+              5.552
+            ],
+            "closed_at": 9.901,
+            "wer": 0.125,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 612.4
+          },
+          {
+            "error": null,
+            "text": "Is tengo hambre the same as estoy hambriento?",
+            "eot_times": [
+              5.583
+            ],
+            "closed_at": 9.902,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 643.4
+          },
+          {
+            "error": null,
+            "text": "Is tengo hambre the same as estoy hambriento?",
+            "eot_times": [
+              5.451
+            ],
+            "closed_at": 9.903,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 511.2
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "y tengo hambre the same as estoy hambriento.",
+            "eot_times": [
+              5.654
+            ],
+            "closed_at": 9.922,
+            "wer": 0.125,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 713.6
+          },
+          {
+            "error": null,
+            "text": "y tengo hambre the same as estoy hambriento.",
+            "eot_times": [
+              5.571
+            ],
+            "closed_at": 9.921,
+            "wer": 0.125,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 630.7
+          },
+          {
+            "error": null,
+            "text": "y tengo hambre the same as estoy hambriento.",
+            "eot_times": [
+              5.65
+            ],
+            "closed_at": 9.923,
+            "wer": 0.125,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 710.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q07",
+      "category": "Q",
+      "reference": "When do I use por and when do I use para?",
+      "speech_end_s": 4.56,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "When do you— when do I use por and when do I use para?",
+            "eot_times": [
+              5.857
+            ],
+            "closed_at": 9.202,
+            "wer": 0.2727,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 1297.1
+          },
+          {
+            "error": null,
+            "text": "When do you— when do I use por and when do I use para?",
+            "eot_times": [
+              5.2
+            ],
+            "closed_at": 9.202,
+            "wer": 0.2727,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 639.9
+          },
+          {
+            "error": null,
+            "text": "When do you— when do I use por and when do I use para?",
+            "eot_times": [
+              5.849
+            ],
+            "closed_at": 9.202,
+            "wer": 0.2727,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 1289.4
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "When do I when do I use pore and when do I use para?",
+            "eot_times": [
+              4.979
+            ],
+            "closed_at": 9.201,
+            "wer": 0.3636,
+            "term_acc": 0.5,
+            "term_acc_accents": 0.5,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 418.9
+          },
+          {
+            "error": null,
+            "text": "When do I when do I use pore and when do I use para?",
+            "eot_times": [
+              4.932
+            ],
+            "closed_at": 9.201,
+            "wer": 0.3636,
+            "term_acc": 0.5,
+            "term_acc_accents": 0.5,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 371.8
+          },
+          {
+            "error": null,
+            "text": "When do I when do I use pore and when do I use para?",
+            "eot_times": [
+              5.011
+            ],
+            "closed_at": 9.203,
+            "wer": 0.3636,
+            "term_acc": 0.5,
+            "term_acc_accents": 0.5,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 451.3
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q08",
+      "category": "Q",
+      "reference": "How do I say I would like a coffee, quisiera un café?",
+      "speech_end_s": 5.66,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "How do I say I would like a coffee? Quisiera un café.",
+            "eot_times": [
+              6.25
+            ],
+            "closed_at": 10.302,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 589.7
+          },
+          {
+            "error": null,
+            "text": "How do I say I would like a coffee? Quisiera un café.",
+            "eot_times": [
+              6.454
+            ],
+            "closed_at": 10.302,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 794.3
+          },
+          {
+            "error": null,
+            "text": "How do I say I would like a coffee? Quisiera un café.",
+            "eot_times": [
+              6.253
+            ],
+            "closed_at": 10.303,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 592.9
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "How do I say I would like a coffee quisiera un café?",
+            "eot_times": [
+              5.813
+            ],
+            "closed_at": 10.322,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 152.6
+          },
+          {
+            "error": null,
+            "text": "How do I say I would like a coffee quisiera un café?",
+            "eot_times": [
+              5.863
+            ],
+            "closed_at": 10.321,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 202.7
+          },
+          {
+            "error": null,
+            "text": "How do I say I would like a coffee quisiera un café?",
+            "eot_times": [
+              5.808
+            ],
+            "closed_at": 10.321,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 148.3
+          }
+        ]
+      }
+    },
+    {
+      "id": "A01",
+      "category": "A",
+      "reference": "¿Dónde está la estación de tren?",
+      "speech_end_s": 3.68,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "¿Dónde está la estación de tren?",
+            "eot_times": [
+              4.149
+            ],
+            "closed_at": 8.402,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 468.8
+          },
+          {
+            "error": null,
+            "text": "¿Dónde está la estación de tren?",
+            "eot_times": [
+              4.202
+            ],
+            "closed_at": 8.401,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 522.2
+          },
+          {
+            "error": null,
+            "text": "¿Dónde está la estación de tren?",
+            "eot_times": [
+              4.253
+            ],
+            "closed_at": 8.402,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 573.5
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "¿Dónde está la estación de tren?",
+            "eot_times": [
+              3.931
+            ],
+            "closed_at": 8.403,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 250.9
+          },
+          {
+            "error": null,
+            "text": "¿Dónde está la estación de tren?",
+            "eot_times": [
+              4.015
+            ],
+            "closed_at": 8.402,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 334.7
+          },
+          {
+            "error": null,
+            "text": "¿Dónde está la estación de tren?",
+            "eot_times": [
+              3.968
+            ],
+            "closed_at": 8.402,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 287.6
+          }
+        ]
+      }
+    },
+    {
+      "id": "A02",
+      "category": "A",
+      "reference": "Quisiera un café con leche, por favor.",
+      "speech_end_s": 4.26,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Quisiera un café con leche, por favor.",
+            "eot_times": [
+              4.821
+            ],
+            "closed_at": 9.252,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 561.0
+          },
+          {
+            "error": null,
+            "text": "Quisiera un café con leche, por favor.",
+            "eot_times": [
+              4.847
+            ],
+            "closed_at": 9.252,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 587.0
+          },
+          {
+            "error": null,
+            "text": "Quisiera un café con leche, por favor.",
+            "eot_times": [
+              4.815
+            ],
+            "closed_at": 9.251,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 555.2
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Quisiera un café con leche, por favor.",
+            "eot_times": [
+              5.014
+            ],
+            "closed_at": 9.282,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 753.5
+          },
+          {
+            "error": null,
+            "text": "Quisiera un café con leche, por favor.",
+            "eot_times": [
+              5.088
+            ],
+            "closed_at": 9.282,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 828.5
+          },
+          {
+            "error": null,
+            "text": "Quisiera un café con leche, por favor.",
+            "eot_times": [
+              5.09
+            ],
+            "closed_at": 9.282,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 830.3
+          }
+        ]
+      }
+    },
+    {
+      "id": "A03",
+      "category": "A",
+      "reference": "Mucho gusto, soy estudiante de español.",
+      "speech_end_s": 4.76,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Mucho gusto, soy estudiante de español.",
+            "eot_times": [
+              5.449
+            ],
+            "closed_at": 9.652,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 689.4
+          },
+          {
+            "error": null,
+            "text": "Mucho gusto, soy estudiante de español.",
+            "eot_times": [
+              5.449
+            ],
+            "closed_at": 9.651,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 688.9
+          },
+          {
+            "error": null,
+            "text": "Mucho gusto, soy estudiante de español.",
+            "eot_times": [
+              5.449
+            ],
+            "closed_at": 9.652,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 689.3
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Mucho gusto, soy estudiante de español.",
+            "eot_times": [
+              5.45
+            ],
+            "closed_at": 9.682,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 689.9
+          },
+          {
+            "error": null,
+            "text": "Mucho gusto, soy estudiante de español.",
+            "eot_times": [
+              5.409
+            ],
+            "closed_at": 9.683,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 648.6
+          },
+          {
+            "error": null,
+            "text": "Mucho gusto, soy estudiante de español.",
+            "eot_times": [
+              5.407
+            ],
+            "closed_at": 9.683,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 647.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "A04",
+      "category": "A",
+      "reference": "¿Cuánto cuesta el billete?",
+      "speech_end_s": 3.36,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "¿Cuánto cuesta el billete?",
+            "eot_times": [
+              3.904
+            ],
+            "closed_at": 7.801,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 544.3
+          },
+          {
+            "error": null,
+            "text": "¿Cuánto cuesta el billete?",
+            "eot_times": [
+              4.101
+            ],
+            "closed_at": 7.801,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 740.9
+          },
+          {
+            "error": null,
+            "text": "¿Cuánto cuesta el billete?",
+            "eot_times": [
+              4.024
+            ],
+            "closed_at": 7.802,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 664.0
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "¿Cuánto cuesta el viente?",
+            "eot_times": [
+              3.651
+            ],
+            "closed_at": 7.761,
+            "wer": 0.25,
+            "term_acc": 0.5,
+            "term_acc_accents": 0.5,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 290.7
+          },
+          {
+            "error": null,
+            "text": "¿Cuánto cuesta el viente?",
+            "eot_times": [
+              3.619
+            ],
+            "closed_at": 7.763,
+            "wer": 0.25,
+            "term_acc": 0.5,
+            "term_acc_accents": 0.5,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 259.4
+          },
+          {
+            "error": null,
+            "text": "¿Cuánto cuesta el viente?",
+            "eot_times": [
+              3.668
+            ],
+            "closed_at": 7.762,
+            "wer": 0.25,
+            "term_acc": 0.5,
+            "term_acc_accents": 0.5,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 308.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "A05",
+      "category": "A",
+      "reference": "Tengo hambre y quiero comer.",
+      "speech_end_s": 3.98,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Tengo hambre y quiero comer.",
+            "eot_times": [
+              4.551
+            ],
+            "closed_at": 9.152,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 571.5
+          },
+          {
+            "error": null,
+            "text": "Tengo hambre y quiero comer.",
+            "eot_times": [
+              4.608
+            ],
+            "closed_at": 9.152,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 628.1
+          },
+          {
+            "error": null,
+            "text": "Tengo hambre y quiero comer.",
+            "eot_times": [
+              4.552
+            ],
+            "closed_at": 9.153,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 571.7
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Tengo hambre y quiero comer.",
+            "eot_times": [
+              4.533
+            ],
+            "closed_at": 9.201,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 552.8
+          },
+          {
+            "error": null,
+            "text": "Tengo hambre y quiero comer.",
+            "eot_times": [
+              4.612
+            ],
+            "closed_at": 9.203,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 632.3
+          },
+          {
+            "error": null,
+            "text": "Tengo hambre y quiero comer.",
+            "eot_times": [
+              4.655
+            ],
+            "closed_at": 9.202,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 674.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "A06",
+      "category": "A",
+      "reference": "La cuenta, por favor.",
+      "speech_end_s": 2.48,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "La cuenta, por favor.",
+            "eot_times": [
+              3.048
+            ],
+            "closed_at": 7.151,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 568.3
+          },
+          {
+            "error": null,
+            "text": "La cuenta, por favor.",
+            "eot_times": [
+              3.149
+            ],
+            "closed_at": 7.153,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 669.4
+          },
+          {
+            "error": null,
+            "text": "La cuenta, por favor.",
+            "eot_times": [
+              3.051
+            ],
+            "closed_at": 7.151,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 570.7
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "La cuenta, por favor.",
+            "eot_times": [
+              3.024
+            ],
+            "closed_at": 7.122,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 544.5
+          },
+          {
+            "error": null,
+            "text": "La cuenta, por favor.",
+            "eot_times": [
+              3.01
+            ],
+            "closed_at": 7.123,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 530.2
+          },
+          {
+            "error": null,
+            "text": "La cuenta, por favor.",
+            "eot_times": [
+              3.087
+            ],
+            "closed_at": 7.12,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 606.8
+          }
+        ]
+      }
+    },
+    {
+      "id": "M01",
+      "category": "M",
+      "reference": "¿Dónde está el estación?",
+      "speech_end_s": 3.18,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "¿Dónde está la estación?",
+            "eot_times": [
+              3.753
+            ],
+            "closed_at": 7.802,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 573.0
+          },
+          {
+            "error": null,
+            "text": "¿Dónde está la estación?",
+            "eot_times": [
+              3.659
+            ],
+            "closed_at": 7.801,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 479.0
+          },
+          {
+            "error": null,
+            "text": "¿Dónde está la estación?",
+            "eot_times": [
+              3.65
+            ],
+            "closed_at": 7.803,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 470.2
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "donde está él estación.",
+            "eot_times": [
+              3.414
+            ],
+            "closed_at": 7.842,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 233.7
+          },
+          {
+            "error": null,
+            "text": "donde está él estación.",
+            "eot_times": [
+              3.566
+            ],
+            "closed_at": 7.842,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 385.9
+          },
+          {
+            "error": null,
+            "text": "donde está él estación.",
+            "eot_times": [
+              3.412
+            ],
+            "closed_at": 7.842,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 232.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "M02",
+      "category": "M",
+      "reference": "Yo es estudiante.",
+      "speech_end_s": 2.48,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Yo es estudiante.",
+            "eot_times": [
+              4.167
+            ],
+            "closed_at": 7.952,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 1686.7
+          },
+          {
+            "error": null,
+            "text": "Yo es estudiante.",
+            "eot_times": [
+              4.305
+            ],
+            "closed_at": 7.953,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 1825.1
+          },
+          {
+            "error": null,
+            "text": "Yo es estudiante.",
+            "eot_times": [
+              4.258
+            ],
+            "closed_at": 7.951,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 1777.9
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "US estudiant",
+            "eot_times": [
+              3.253
+            ],
+            "closed_at": 8.002,
+            "wer": 1.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 773.2
+          },
+          {
+            "error": null,
+            "text": "US estudiant",
+            "eot_times": [
+              3.303
+            ],
+            "closed_at": 8.002,
+            "wer": 1.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 822.9
+          },
+          {
+            "error": null,
+            "text": "US estudiant",
+            "eot_times": [
+              3.249
+            ],
+            "closed_at": 8.002,
+            "wer": 1.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 768.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "M03",
+      "category": "M",
+      "reference": "Tengo hombre.",
+      "speech_end_s": 1.74,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Tengo hambre.",
+            "eot_times": [
+              2.414
+            ],
+            "closed_at": 6.801,
+            "wer": 0.5,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 674.3
+          },
+          {
+            "error": null,
+            "text": "Tengo hambre.",
+            "eot_times": [
+              2.349
+            ],
+            "closed_at": 6.803,
+            "wer": 0.5,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 609.2
+          },
+          {
+            "error": null,
+            "text": "Tengo hambre.",
+            "eot_times": [
+              2.349
+            ],
+            "closed_at": 6.803,
+            "wer": 0.5,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 608.8
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Tengo hombre.",
+            "eot_times": [
+              2.886
+            ],
+            "closed_at": 6.802,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 1146.4
+          },
+          {
+            "error": null,
+            "text": "Tengo hombre.",
+            "eot_times": [
+              2.455
+            ],
+            "closed_at": 6.802,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 714.5
+          },
+          {
+            "error": null,
+            "text": "Tengo hombre.",
+            "eot_times": [
+              2.453
+            ],
+            "closed_at": 6.803,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 713.2
+          }
+        ]
+      }
+    },
+    {
+      "id": "M04",
+      "category": "M",
+      "reference": "Yo tiene veinte años.",
+      "speech_end_s": 3.32,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Yo tiene 20 años.",
+            "eot_times": [
+              3.888
+            ],
+            "closed_at": 7.802,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 567.9
+          },
+          {
+            "error": null,
+            "text": "Yo tiene 20 años.",
+            "eot_times": [
+              3.919
+            ],
+            "closed_at": 7.803,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 599.0
+          },
+          {
+            "error": null,
+            "text": "Yo tiene 20 años.",
+            "eot_times": [
+              3.752
+            ],
+            "closed_at": 7.802,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 432.2
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "y tiene veinte años.",
+            "eot_times": [
+              3.843
+            ],
+            "closed_at": 7.842,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 523.3
+          },
+          {
+            "error": null,
+            "text": "y tiene veinte años.",
+            "eot_times": [
+              3.852
+            ],
+            "closed_at": 7.843,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 532.3
+          },
+          {
+            "error": null,
+            "text": "y tiene veinte años.",
+            "eot_times": [
+              3.735
+            ],
+            "closed_at": 7.842,
+            "wer": 0.25,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 414.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "M05",
+      "category": "M",
+      "reference": "Ella es cansada.",
+      "speech_end_s": 2.0,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Ella es cansada.",
+            "eot_times": [
+              2.548
+            ],
+            "closed_at": 6.852,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 548.2
+          },
+          {
+            "error": null,
+            "text": "Ella es cansada.",
+            "eot_times": [
+              2.568
+            ],
+            "closed_at": 6.853,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 568.0
+          },
+          {
+            "error": null,
+            "text": "Ella es cansada.",
+            "eot_times": [
+              2.455
+            ],
+            "closed_at": 6.852,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 455.2
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "a s cansada",
+            "eot_times": [
+              3.297
+            ],
+            "closed_at": 6.883,
+            "wer": 0.6667,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 1297.0
+          },
+          {
+            "error": null,
+            "text": "a s cansada",
+            "eot_times": [
+              3.362
+            ],
+            "closed_at": 6.881,
+            "wer": 0.6667,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 1362.1
+          },
+          {
+            "error": null,
+            "text": "a s cansada",
+            "eot_times": [
+              3.252
+            ],
+            "closed_at": 6.883,
+            "wer": 0.6667,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": false,
+            "cutoffs": 0,
+            "latency_ms": 1251.6
+          }
+        ]
+      }
+    },
+    {
+      "id": "M06",
+      "category": "M",
+      "reference": "Quiero una café.",
+      "speech_end_s": 1.98,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Quiero una café.",
+            "eot_times": [
+              2.548
+            ],
+            "closed_at": 6.703,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 568.5
+          },
+          {
+            "error": null,
+            "text": "Quiero una café.",
+            "eot_times": [
+              2.552
+            ],
+            "closed_at": 6.703,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 572.4
+          },
+          {
+            "error": null,
+            "text": "Quiero una café.",
+            "eot_times": [
+              2.546
+            ],
+            "closed_at": 6.703,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 566.4
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Quiero una café.",
+            "eot_times": [
+              2.61
+            ],
+            "closed_at": 6.721,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 630.3
+          },
+          {
+            "error": null,
+            "text": "Quiero una café.",
+            "eot_times": [
+              2.717
+            ],
+            "closed_at": 6.723,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 737.1
+          },
+          {
+            "error": null,
+            "text": "Quiero una café.",
+            "eot_times": [
+              2.66
+            ],
+            "closed_at": 6.722,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 680.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "H01",
+      "category": "H",
+      "reference": "How do you say... butterfly in Spanish?",
+      "speech_end_s": 6.12,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "How do you say butterfly in Spanish?",
+            "eot_times": [
+              8.382
+            ],
+            "closed_at": 10.903,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 2261.7
+          },
+          {
+            "error": null,
+            "text": "How do you say butterfly in Spanish?",
+            "eot_times": [
+              8.395
+            ],
+            "closed_at": 10.902,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 2274.8
+          },
+          {
+            "error": null,
+            "text": "How do you say butterfly in Spanish?",
+            "eot_times": [
+              8.305
+            ],
+            "closed_at": 10.901,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 2184.7
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "How do you say butterfly in Spanish?",
+            "eot_times": [
+              6.515
+            ],
+            "closed_at": 10.882,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 394.8
+          },
+          {
+            "error": null,
+            "text": "How do you say butterfly in Spanish?",
+            "eot_times": [
+              6.493
+            ],
+            "closed_at": 10.882,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 372.6
+          },
+          {
+            "error": null,
+            "text": "How do you say butterfly in Spanish?",
+            "eot_times": [
+              6.491
+            ],
+            "closed_at": 10.883,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 370.9
+          }
+        ]
+      }
+    },
+    {
+      "id": "H02",
+      "category": "H",
+      "reference": "Is it... la mariposa or el mariposa?",
+      "speech_end_s": 5.72,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Is it La Mariposa or El Mariposa?",
+            "eot_times": [
+              7.733
+            ],
+            "closed_at": 10.152,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 2013.0
+          },
+          {
+            "error": null,
+            "text": "Is it La Mariposa or El Mariposa?",
+            "eot_times": [
+              7.63
+            ],
+            "closed_at": 10.152,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 1909.9
+          },
+          {
+            "error": null,
+            "text": "Is it La Mariposa or El Mariposa?",
+            "eot_times": [
+              7.653
+            ],
+            "closed_at": 10.152,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 1932.6
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Is it lamari posa or lmari posa?",
+            "eot_times": [
+              6.13
+            ],
+            "closed_at": 10.163,
+            "wer": 0.5714,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 410.5
+          },
+          {
+            "error": null,
+            "text": "Is it lamari posa or lmari posa?",
+            "eot_times": [
+              6.056
+            ],
+            "closed_at": 10.163,
+            "wer": 0.5714,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 335.8
+          },
+          {
+            "error": null,
+            "text": "Is it lamari posa or lmari posa?",
+            "eot_times": [
+              6.053
+            ],
+            "closed_at": 10.163,
+            "wer": 0.5714,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 332.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "H03",
+      "category": "H",
+      "reference": "What's the word for... train station?",
+      "speech_end_s": 5.02,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "What's the word for train station?",
+            "eot_times": [
+              5.788
+            ],
+            "closed_at": 9.551,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 768.3
+          },
+          {
+            "error": null,
+            "text": "What's the word for train station?",
+            "eot_times": [
+              5.548
+            ],
+            "closed_at": 9.553,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 528.3
+          },
+          {
+            "error": null,
+            "text": "What's the word for train station?",
+            "eot_times": [
+              5.548
+            ],
+            "closed_at": 9.553,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 527.6
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "What's the word for train station?",
+            "eot_times": [
+              5.371
+            ],
+            "closed_at": 9.522,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 351.0
+          },
+          {
+            "error": null,
+            "text": "What's the word for train station?",
+            "eot_times": [
+              5.243
+            ],
+            "closed_at": 9.521,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 222.6
+          },
+          {
+            "error": null,
+            "text": "What's the word for train station?",
+            "eot_times": [
+              5.172
+            ],
+            "closed_at": 9.523,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 152.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "H04",
+      "category": "H",
+      "reference": "Can you repeat... buenas noches, slowly?",
+      "speech_end_s": 5.68,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "Can you repeat buenos noches slowly?",
+            "eot_times": [
+              6.318
+            ],
+            "closed_at": 10.351,
+            "wer": 0.1667,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 638.1
+          },
+          {
+            "error": null,
+            "text": "Can you repeat buenos noches slowly?",
+            "eot_times": [
+              6.348
+            ],
+            "closed_at": 10.352,
+            "wer": 0.1667,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 668.2
+          },
+          {
+            "error": null,
+            "text": "Can you repeat buenos noches slowly?",
+            "eot_times": [
+              6.375
+            ],
+            "closed_at": 10.353,
+            "wer": 0.1667,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 695.2
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "Can you repeat Buenas noches, slowly.",
+            "eot_times": [
+              3.655,
+              6.401
+            ],
+            "closed_at": 10.321,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 1,
+            "latency_ms": 721.4
+          },
+          {
+            "error": null,
+            "text": "Can you repeat Buenas noches, slowly.",
+            "eot_times": [
+              3.618,
+              6.296
+            ],
+            "closed_at": 10.323,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 1,
+            "latency_ms": 616.0
+          },
+          {
+            "error": null,
+            "text": "Can you repeat Buenas noches, slowly.",
+            "eot_times": [
+              3.613,
+              6.293
+            ],
+            "closed_at": 10.323,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 1,
+            "latency_ms": 613.3
+          }
+        ]
+      }
+    },
+    {
+      "id": "H05",
+      "category": "H",
+      "reference": "I want to say... I'm hungry, is it tengo hambre?",
+      "speech_end_s": 6.4,
+      "results": {
+        "assemblyai": [
+          {
+            "error": null,
+            "text": "I want to say I'm hungry. Is it tengo hambre?",
+            "eot_times": [
+              3.798,
+              5.177,
+              6.978
+            ],
+            "closed_at": 11.201,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 2,
+            "latency_ms": 578.2
+          },
+          {
+            "error": null,
+            "text": "I want to say I'm hungry. Is it tengo hambre?",
+            "eot_times": [
+              3.742,
+              5.152,
+              6.853
+            ],
+            "closed_at": 11.201,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 2,
+            "latency_ms": 452.8
+          },
+          {
+            "error": null,
+            "text": "I want to say I'm hungry. Is it tengo hambre?",
+            "eot_times": [
+              3.771,
+              5.31,
+              6.918
+            ],
+            "closed_at": 11.203,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 2,
+            "latency_ms": 517.9
+          }
+        ],
+        "deepgram": [
+          {
+            "error": null,
+            "text": "I want to say I'm hungry. Is it tango hambre?",
+            "eot_times": [
+              6.855
+            ],
+            "closed_at": 11.201,
+            "wer": 0.0909,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 454.9
+          },
+          {
+            "error": null,
+            "text": "I want to say I'm hungry. Is it tango hambre?",
+            "eot_times": [
+              6.772
+            ],
+            "closed_at": 11.201,
+            "wer": 0.0909,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 371.6
+          },
+          {
+            "error": null,
+            "text": "I want to say I'm hungry. Is it tango hambre?",
+            "eot_times": [
+              6.77
+            ],
+            "closed_at": 11.203,
+            "wer": 0.0909,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 370.1
+          }
+        ]
+      }
+    }
+  ]
+}

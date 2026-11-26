@@ -1,0 +1,34 @@
+# Speech-to-text settings shared by the agent (agent.py) and the eval (evals/run.py),
+# so the configuration we measure is the configuration we deploy.
+#
+# Fairness rules: each provider runs its published voice-agent defaults. The only shared
+# hint is the language list. No keyterm boosting and no conversation context for anyone,
+# and nothing here was tuned on the eval clips.
+
+languages: [en, es]
+
+assemblyai:
+  model: assemblyai-stt-3-7-realtime-agent  # the LiveKit plugin's default model; it sends this as `speech_model`
+  mode: balanced              # AssemblyAI's published voice-agent preset (server default): it sets
+                              # min_turn_silence 128 ms / max_turn_silence 1280 ms. Setting a mode also
+                              # stops the LiveKit plugin from forcing its own 100 ms min_turn_silence.
+  previous_context_n_turns: 0 # no carryover of prior turns as context
+  # Automatic agent_context is turned off in agent.py via
+  # AgentSession(stt_context_options={"forward_chat_context": False}).
+  # The plugin URL-encodes language_codes as a JSON list (e.g. ["en","es"]) and sets
+  # language_detection=true for this model. The eval mirrors both.
+  chunk_ms: 50
+
+deepgram:
+  model: flux-general-multi   # Deepgram's voice-agent model; multilingual (en, es, ...)
+  # Language hints are sent as repeated `language_hint` params (LiveKit: STTv2(language_hint=[...])).
+  chunk_ms: 80                # Deepgram recommends 80 ms chunks for Flux
+
+tts:
+  model: assemblyai-tts-1
+  voice: aai-antonioluis      # native Spanish voice: the phrases learners copy must sound right;
+                              # the English explanations come out with a Spanish accent, like a real tutor
+  language: es
+
+sample_rate: 16000
+trailing_silence_s: 4.0   # silence after each clip; longer than Flux eot_timeout_ms (3 s) so either provider can end the turn on its own before we close
