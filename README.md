@@ -34,7 +34,7 @@ Each turn in the console prints what the speech-to-text heard and how long it to
 learner had finished:
 
 ```
-[assemblyai] heard: "<what the learner said>"  end-of-turn: <ms> ms
+[assemblyai] heard: "So it's dónde está el estación."  end-of-turn: 503 ms
 ```
 
 ## How it's built
@@ -150,6 +150,7 @@ Deepgram made the same miss on one of them.
   - "Yo es estudiante" came back as "US estudiant"
   - "Ella es cansada" came back as "a s cansada"
   - Those lead to "please try again".
+- In one live console session the reverse happened: AssemblyAI kept "dónde está el estación" and Deepgram turned it into "la estación". Both providers sometimes fix a wrong article.
 - This is the first thing to test on the customer's own audio, and to raise with AssemblyAI's model team.
 
 **Latency: Deepgram is faster.**
