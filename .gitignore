@@ -1,0 +1,14 @@
+# Claude tooling — never committed
+docs/superpowers/
+CLAUDE.md
+.claude/
+.superpowers/
+
+# Secrets
+.env
+
+# Python / OS
+__pycache__/
+.venv/
+.pytest_cache/
+.DS_Store
