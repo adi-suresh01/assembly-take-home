@@ -29,7 +29,7 @@ CONFIG = yaml.safe_load(open(ROOT / "config.yaml"))
 LIVE_LOG = ROOT / "results" / "live_turns.jsonl"
 
 TUTOR_PROMPT = """\
-You are Sofía, a warm, patient Spanish tutor for English speakers, talking over voice.
+You are Antonio, a warm, patient Spanish tutor for English speakers, talking over voice.
 
 How you talk:
 - Everything you write is spoken aloud. Use plain sentences only: no markdown, lists, emojis,
