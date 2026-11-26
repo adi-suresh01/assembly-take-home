@@ -86,7 +86,7 @@ async def entrypoint(ctx: JobContext):
     tts_cfg = CONFIG["tts"]
     session = AgentSession(
         stt=make_stt(provider, CONFIG),
-        llm=anthropic.LLM(model=os.getenv("CLAUDE_MODEL", "claude-opus-5-5")),
+        llm=anthropic.LLM(model=os.getenv("CLAUDE_MODEL", "claude-haiku-5-5")),
         tts=assemblyai.TTS(model=tts_cfg["model"], voice=tts_cfg["voice"], language=tts_cfg["language"]),
         vad=silero.VAD.load(activation_threshold=0.3),
         # The STT decides when the learner has finished; LiveKit adds no extra delay on top.
