@@ -85,6 +85,18 @@ def test_speech_end_s():
     assert speech_end_s(audio, sr) == pytest.approx(2.0, abs=0.05)
 
 
+def test_speech_end_s_ignores_room_noise_and_key_click():
+    # Shaped like the real clips: quiet speech (~-31 dBFS), room noise ~30 dB below it,
+    # then the Enter-key click that stops the recording.
+    sr = 16000
+    rng = np.random.default_rng(0)
+    speech = 0.04 * np.sin(2 * np.pi * 220 * np.arange(sr) / sr) * 32767
+    noise = rng.normal(0, 0.0012 * 32767, sr)
+    click = rng.normal(0, 0.008 * 32767, sr // 50)
+    audio = np.concatenate([speech, noise, click]).astype(np.int16)
+    assert speech_end_s(audio, sr) == pytest.approx(1.0, abs=0.05)
+
+
 def test_cutoffs_and_latency():
     assert cutoffs([1.2, 3.4], 3.0) == 1
     assert latency_ms([1.2, 3.4], 3.0) == pytest.approx(400)

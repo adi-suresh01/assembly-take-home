@@ -48,8 +48,10 @@ def mistake_kept(error_word: str, hypothesis: str) -> bool:
 
 
 def speech_end_s(samples: np.ndarray, sample_rate: int) -> float:
-    """End time of the last 20 ms frame louder than 30 dB below the clip's loudest frame."""
-    frame = int(sample_rate * 0.02)
+    """End of the last stretch of speech: at least 60 ms (3 frames of 20 ms) louder than both
+    30 dB below the loudest frame and 10 dB above the room noise (the quietest 20% of frames).
+    The 60 ms minimum skips short clicks, like the Enter key that stops the recording."""
+    frame, min_run = int(sample_rate * 0.02), 3
     n = len(samples) // frame
     if n == 0:
         return 0.0
@@ -57,8 +59,11 @@ def speech_end_s(samples: np.ndarray, sample_rate: int) -> float:
     rms = np.sqrt((frames ** 2).mean(axis=1))
     if rms.max() == 0:
         return 0.0
-    loud = np.nonzero(rms > rms.max() * 10 ** (-30 / 20))[0]
-    return float((loud[-1] + 1) * frame / sample_rate)
+    threshold = max(rms.max() * 10 ** (-30 / 20), np.percentile(rms, 20) * 10 ** (10 / 20))
+    loud = rms > threshold
+    runs = np.nonzero(np.convolve(loud, np.ones(min_run), "valid") == min_run)[0]
+    last = runs[-1] + min_run - 1 if len(runs) else np.nonzero(loud)[0][-1]
+    return float((last + 1) * frame / sample_rate)
 
 
 def cutoffs(eot_times: list[float], speech_end: float) -> int:
