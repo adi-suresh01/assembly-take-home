@@ -82,7 +82,7 @@ learner had finished:
   - Clips are streamed at real-time pace, in alternating order, over 3 pooled passes.
   - Nothing was tuned on the clips.
 - **Claude Haiku 5.5 as the LLM.**
-  - Measured with the tutor prompt: first words in 0.73 s, against 2.19 s for Opus 5.5.
+  - One informal measurement during development, with the tutor prompt: first words in 0.73 s, against 2.19 s for Opus 5.5. This isn't part of the eval.
   - In a voice loop, dead air costs more than the extra intelligence buys.
   - Swap it with `CLAUDE_MODEL`.
 - **A Spanish TTS voice.** A TTS session speaks one language. The Spanish voice keeps the phrases learners copy native, with accented English explanations. An English voice anglicizes the Spanish.
@@ -108,48 +108,73 @@ learner had finished:
 
 ## Results
 
-From `results/results.json`: 25 clips, 3 passes, 75 runs per provider, run on 2026-11-26.
+From `results/results.json`: 25 clips, 3 passes over the full set, run on 2026-11-26. The
+passes gave almost identical transcripts, so counts below are per clip, not per run.
 
 | | WER ↓ | Spanish terms ↑ | Mistakes kept ↑ | Hesitation cut-offs ↓ | End-of-turn latency p50 / p90 ↓ | Errors |
 |---|---|---|---|---|---|---|
-| **AssemblyAI** | **6.3%** | **88%** (88%) | 11/17 | 3/15 | 566.7 / 1653.9 ms | 1 |
-| **Deepgram** | 16.9% | 65% (65%) | 12/18 | 3/15 | **429.5 / 726.9 ms** | 0 |
+| **AssemblyAI** | **6.4%** | **88%** (88%) | 4 of 6 clips | 1 of 5 clips | 609.2 / 1741.4 ms | 0 |
+| **Deepgram** | 16.9% | 65% (65%) | 4 of 6 clips | 1 of 5 clips | **510.9 / 803.0 ms** | 0 |
 
-**Accuracy decides this use case, and AssemblyAI wins it clearly.**
-- AssemblyAI makes about a third of Deepgram's word errors.
-- Learners mix English and Spanish in one sentence, and that's exactly where Deepgram breaks. When the transcript is wrong, the tutor answers the wrong question.
-- Every pass gave the same transcripts:
+WER is the mean of per-clip WER. By group:
+
+| WER by group | Q: English + Spanish words | A: correct Spanish | M: Spanish with a mistake | H: with a pause |
+|---|---|---|---|---|
+| AssemblyAI | **5.5%** | **0.0%** | **16.7%** | **3.3%** |
+| Deepgram | 17.3% | 4.2% | 31.9% | 13.2% |
+
+**Accuracy decides this use case, and AssemblyAI wins it.**
+- AssemblyAI has lower WER in every group, and gets 88% of the expected Spanish words and phrases right, against 65%.
+- When the transcript is wrong, the tutor answers the wrong question.
+- These came out the same on all 3 passes:
 
 | Learner said | AssemblyAI | Deepgram |
 |---|---|---|
-| What does **dónde está el baño** mean? | What does "¿Dónde está el baño?" mean? | What does donde esta **Albanio** mean? |
+| What does **dónde está el baño** mean? | What does ¿Dónde está el baño? mean. | What does donde esta **Albanio** mean? |
 | **Is it** la estación or el estación? | Is it la estación or el estación? | **Isidro** la estación or el estación? |
 | ¿Cuánto cuesta el **billete**? | ¿Cuánto cuesta el billete? | ¿Cuánto cuesta el **viente**? |
 | Is it... **la mariposa** or **el mariposa**? | Is it La Mariposa or El Mariposa? | Is it **lamari posa** or **lmari posa**? |
-| ...is it **tengo** hambre? | ...Is it tengo hambre? | ...Is it **tango** hambre? |
+| I want to say... I'm hungry, is it **tengo** hambre? | I want to say I'm hungry. Is it tengo hambre? | I want to say I'm hungry. Is it **tango** hambre? |
 
-AssemblyAI's misses are smaller. It heard "buenas noches" as "buenos noches" on two clips; Deepgram made the same miss on one of them.
+Where AssemblyAI got a word wrong, it was "buenas noches" heard as "buenos noches", on two clips.
+Deepgram made the same miss on one of them.
 
 **Mistakes kept: a tie, but the two fail differently.**
-- Both kept about two thirds of the deliberate mistakes.
-- **AssemblyAI autocorrected two, every pass:** "el estación" came back as "la estación", and "Tengo hombre" as "Tengo hambre". It did this with no boosting and no context. For a tutor this is the worse failure, because the tutor then praises an error.
-- **Deepgram garbled two:** "Yo es estudiante" came back as "US estudiant", and "Ella es cansada" as "a s cansada". Those lead to "please try again".
+- Each kept the deliberate mistake in 4 of the 6 clips.
+- **AssemblyAI autocorrected two, on every pass:**
+  - "¿Dónde está el estación?" came back as "¿Dónde está la estación?"
+  - "Tengo hombre" came back as "Tengo hambre"
+  - This happened with no boosting and no context.
+  - For a tutor it's the worse failure: the tutor then praises an error.
+- **Deepgram garbled two:**
+  - "Yo es estudiante" came back as "US estudiant"
+  - "Ella es cansada" came back as "a s cansada"
+  - Those lead to "please try again".
 - This is the first thing to test on the customer's own audio, and to raise with AssemblyAI's model team.
 
 **Latency: Deepgram is faster.**
-- About 137 ms faster at the median.
-- At p90, AssemblyAI takes 1.65 s against Deepgram's 0.73 s.
-- **AssemblyAI's slow tail is consistent, not random.** A few turns take 1.6–2.2 s on every pass: "How do you say... butterfly in Spanish?", "Is it... la mariposa or el mariposa?", "Yo es estudiante." These are turns AssemblyAI doesn't read as finished, so it waits for the 1280 ms maximum silence of its `balanced` preset.
-- AssemblyAI also had two one-off stalls that replays didn't reproduce: 9.7 s once on one clip in this run, and 6.8 s once in an earlier run.
-- `mode: min_latency` (640 ms maximum silence) is the knob for this. It's untested here: it needs a rerun of both providers, tuned equally, on the customer's audio.
+- About 98 ms faster at the median.
+- At p90, AssemblyAI takes 1.74 s against Deepgram's 0.80 s.
+- **AssemblyAI's slow tail is three clips, on every pass:**
+  - "How do you say... butterfly in Spanish?" (2.2–2.3 s)
+  - "Is it... la mariposa or el mariposa?" (1.9–2.0 s)
+  - "Yo es estudiante." (1.7–1.8 s)
+- These are likely turns that don't read as finished to AssemblyAI, so it waits out the 1280 ms maximum silence of its `balanced` preset.
+- No Deepgram turn took longer than 1.5 s.
+- `mode: min_latency` (640 ms maximum silence) is the setting for this. It's untested here: it needs a rerun of both providers, tuned equally, on the customer's audio.
 
 **Hesitation cut-offs: one clip each, on every pass.**
-- AssemblyAI ended the turn at "I want to say..."
+- AssemblyAI ended the turn during "I want to say...". That clip has the longest pause of the five, about 1.6 s.
 - Deepgram ended it at "Can you repeat..."
 
-**Errors.** AssemblyAI refused one connection with "Too many concurrent sessions", even though the eval opens one session at a time. That run is left out of the scores, which is why its mistakes count is out of 17.
-
-**About an earlier run.** A first single pass ran AssemblyAI at 100 / 1000 ms turn silence instead of its published `balanced` preset. The 100 ms came from the LiveKit plugin's override, and the 1000 ms from an outdated doc value. That broke the rule of running each provider on its published defaults, so I fixed it before this run, deciding from AssemblyAI's docs rather than from the results. In that pass AssemblyAI scored 6% WER, 94% Spanish terms, 3/5 cut-offs, and 561 / 1570 ms latency. Deepgram scored 17%, 65%, 1/5, and 412 / 770 ms.
+**How the timing is measured:**
+- **Pacing:** audio goes out like a live mic. Each chunk is sent only once its audio has been "spoken", in 50 ms chunks for AssemblyAI and 80 ms for Deepgram, the same sizes the agent uses.
+- **Silence:** each clip is followed by 4 s of silence.
+- **Forced end-of-turns:** a turn that only ends because we closed the stream counts as "no end-of-turn", not as latency. None happened in this run.
+- **Earlier runs:** development runs had two measurement problems.
+  - AssemblyAI ran at 100 / 1000 ms turn silence (the LiveKit plugin's override) instead of its published `balanced` preset.
+  - Each chunk was sent one chunk early.
+  - Both were fixed before this run. The preset choice came from AssemblyAI's docs, not the results. This run is the only one reported.
 
 ## Limitations
 
@@ -160,4 +185,6 @@ AssemblyAI's misses are smaller. It heard "buenas noches" as "buenos noches" on 
 - **Word-level mistakes only.** The eval checks which words came through, not pronunciation quality. The tutor says so too: it only sees a transcript.
 - **Deepgram as the incumbent is an assumption.** The brief doesn't name the provider.
 - **Live console numbers are anecdotal.** The eval is the measurement.
-- **Scoring quirks.** WER doesn't normalize numbers, so "20 años" vs "veinte años" counts as an error.
+- **Scoring quirks.**
+  - WER doesn't normalize numbers, so "20 años" vs "veinte años" counts as an error.
+  - Clip Q07 has a false start ("When do you— when do I…") that its reference text leaves out. Both providers heard it, so it inflates both WERs on that clip.

@@ -1,6 +1,6 @@
 {
   "run": {
-    "timestamp": "2026-11-26T20:08:02+00:00",
+    "timestamp": "2026-11-26T20:48:50+00:00",
     "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
     "providers": [
       "assemblyai",
@@ -16,7 +16,7 @@
       "es"
     ],
     "sample_rate": 16000,
-    "trailing_silence_s": 2.0,
+    "trailing_silence_s": 4.0,
     "assemblyai": {
       "model": "assemblyai-stt-3-7-realtime-agent",
       "mode": "balanced",
@@ -31,25 +31,37 @@
   "summary": {
     "assemblyai": {
       "clips": 75,
-      "wer": 0.0634,
+      "wer": 0.0642,
+      "wer_by_category": {
+        "Q": 0.0549,
+        "A": 0.0,
+        "M": 0.1667,
+        "H": 0.0333
+      },
       "term_acc": 0.8824,
       "term_acc_accents": 0.8824,
-      "mistakes_kept": "11/17",
+      "mistakes_kept": "12/18",
       "cutoff_clips": "3/15",
-      "latency_p50_ms": 566.7,
-      "latency_p90_ms": 1653.9,
+      "latency_p50_ms": 609.2,
+      "latency_p90_ms": 1741.4,
       "no_eot": 0,
-      "errors": 1
+      "errors": 0
     },
     "deepgram": {
       "clips": 75,
       "wer": 0.1686,
+      "wer_by_category": {
+        "Q": 0.1731,
+        "A": 0.0417,
+        "M": 0.3195,
+        "H": 0.1325
+      },
       "term_acc": 0.6471,
       "term_acc_accents": 0.6471,
       "mistakes_kept": "12/18",
       "cutoff_clips": "3/15",
-      "latency_p50_ms": 429.5,
-      "latency_p90_ms": 726.9,
+      "latency_p50_ms": 510.9,
+      "latency_p90_ms": 803.0,
       "no_eot": 0,
       "errors": 0
     }
@@ -66,40 +78,43 @@
             "error": null,
             "text": "Is it la estación or el estación?",
             "eot_times": [
-              4.902
+              4.952
             ],
+            "closed_at": 9.752,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 501.7
+            "latency_ms": 552.0
           },
           {
             "error": null,
             "text": "Is it la estación or el estación?",
             "eot_times": [
-              4.899
+              4.948
             ],
+            "closed_at": 9.751,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 498.9
+            "latency_ms": 548.1
           },
           {
             "error": null,
             "text": "Is it la estación or el estación?",
             "eot_times": [
-              4.936
+              5.042
             ],
+            "closed_at": 9.753,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 536.4
+            "latency_ms": 642.3
           }
         ],
         "deepgram": [
@@ -107,40 +122,43 @@
             "error": null,
             "text": "Isidro la estación or el estación?",
             "eot_times": [
-              4.854
+              5.012
             ],
+            "closed_at": 9.762,
             "wer": 0.2857,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 453.5
+            "latency_ms": 612.0
           },
           {
             "error": null,
             "text": "Isidro la estación or el estación?",
             "eot_times": [
-              4.923
+              5.337
             ],
+            "closed_at": 9.762,
             "wer": 0.2857,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 523.1
+            "latency_ms": 936.7
           },
           {
             "error": null,
             "text": "Isidro la estación or el estación?",
             "eot_times": [
-              4.934
+              5.011
             ],
+            "closed_at": 9.763,
             "wer": 0.2857,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 534.3
+            "latency_ms": 610.8
           }
         ]
       }
@@ -156,40 +174,43 @@
             "error": null,
             "text": "What does ¿Dónde está el baño? mean.",
             "eot_times": [
-              5.301
+              5.262
             ],
+            "closed_at": 9.402,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 721.3
-          },
-          {
-            "error": null,
-            "text": "What does \"¿Dónde está el baño?\" mean?",
-            "eot_times": [
-              5.804
-            ],
-            "wer": 0.0,
-            "term_acc": 1.0,
-            "term_acc_accents": 1.0,
-            "mistake_kept": null,
-            "cutoffs": 0,
-            "latency_ms": 1223.8
+            "latency_ms": 681.7
           },
           {
             "error": null,
             "text": "What does ¿Dónde está el baño? mean.",
             "eot_times": [
-              5.294
+              5.347
             ],
+            "closed_at": 9.401,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 714.2
+            "latency_ms": 767.4
+          },
+          {
+            "error": null,
+            "text": "What does ¿Dónde está el baño? mean.",
+            "eot_times": [
+              5.354
+            ],
+            "closed_at": 9.401,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 773.7
           }
         ],
         "deepgram": [
@@ -197,40 +218,43 @@
             "error": null,
             "text": "What does donde esta Albanio mean?",
             "eot_times": [
-              4.612
+              4.771
             ],
+            "closed_at": 9.442,
             "wer": 0.2857,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 32.3
+            "latency_ms": 191.0
           },
           {
             "error": null,
             "text": "What does donde esta Albanio mean?",
             "eot_times": [
-              4.687
+              4.693
             ],
+            "closed_at": 9.441,
             "wer": 0.2857,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 107.4
+            "latency_ms": 113.0
           },
           {
             "error": null,
             "text": "What does donde esta Albanio mean?",
             "eot_times": [
-              4.692
+              4.801
             ],
+            "closed_at": 9.443,
             "wer": 0.2857,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 112.0
+            "latency_ms": 221.4
           }
         ]
       }
@@ -246,40 +270,43 @@
             "error": null,
             "text": "How do I pronounce mariposa?",
             "eot_times": [
-              4.499
+              4.512
             ],
+            "closed_at": 9.352,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 519.4
+            "latency_ms": 532.3
           },
           {
             "error": null,
             "text": "How do I pronounce mariposa?",
             "eot_times": [
-              4.559
+              4.469
             ],
+            "closed_at": 9.352,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 578.7
+            "latency_ms": 489.4
           },
           {
             "error": null,
             "text": "How do I pronounce mariposa?",
             "eot_times": [
-              4.591
+              4.557
             ],
+            "closed_at": 9.352,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 610.7
+            "latency_ms": 577.2
           }
         ],
         "deepgram": [
@@ -287,40 +314,43 @@
             "error": null,
             "text": "How do I pronounce Maripossa?",
             "eot_times": [
-              4.293
+              4.452
             ],
+            "closed_at": 9.361,
             "wer": 0.2,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 312.7
+            "latency_ms": 471.8
           },
           {
             "error": null,
             "text": "How do I pronounce Maripossa?",
             "eot_times": [
-              4.409
+              4.375
             ],
+            "closed_at": 9.362,
             "wer": 0.2,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 429.5
+            "latency_ms": 394.8
           },
           {
             "error": null,
             "text": "How do I pronounce Maripossa?",
             "eot_times": [
-              4.383
+              4.491
             ],
+            "closed_at": 9.363,
             "wer": 0.2,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 402.5
+            "latency_ms": 510.9
           }
         ]
       }
@@ -336,40 +366,43 @@
             "error": null,
             "text": "What's the difference between ser and estar?",
             "eot_times": [
-              5.601
+              5.662
             ],
+            "closed_at": 10.052,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 621.4
+            "latency_ms": 681.9
           },
           {
             "error": null,
             "text": "What's the difference between ser and estar?",
             "eot_times": [
-              5.691
+              5.726
             ],
+            "closed_at": 10.051,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 710.7
+            "latency_ms": 746.3
           },
           {
             "error": null,
             "text": "What's the difference between ser and estar?",
             "eot_times": [
-              5.611
+              5.684
             ],
+            "closed_at": 10.053,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 631.0
+            "latency_ms": 703.9
           }
         ],
         "deepgram": [
@@ -377,40 +410,43 @@
             "error": null,
             "text": "What's the difference between ser and estar?",
             "eot_times": [
-              5.355
-            ],
-            "wer": 0.0,
-            "term_acc": 1.0,
-            "term_acc_accents": 1.0,
-            "mistake_kept": null,
-            "cutoffs": 0,
-            "latency_ms": 374.7
-          },
-          {
-            "error": null,
-            "text": "What's the difference between ser and estar?",
-            "eot_times": [
-              5.331
-            ],
-            "wer": 0.0,
-            "term_acc": 1.0,
-            "term_acc_accents": 1.0,
-            "mistake_kept": null,
-            "cutoffs": 0,
-            "latency_ms": 351.1
-          },
-          {
-            "error": null,
-            "text": "What's the difference between ser and estar?",
-            "eot_times": [
               5.451
             ],
+            "closed_at": 10.082,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 470.8
+            "latency_ms": 471.4
+          },
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.489
+            ],
+            "closed_at": 10.081,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 509.1
+          },
+          {
+            "error": null,
+            "text": "What's the difference between ser and estar?",
+            "eot_times": [
+              5.536
+            ],
+            "closed_at": 10.083,
+            "wer": 0.0,
+            "term_acc": 1.0,
+            "term_acc_accents": 1.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 556.1
           }
         ]
       }
@@ -426,40 +462,43 @@
             "error": null,
             "text": "Can you slow down and repeat buenos noches?",
             "eot_times": [
-              5.003
+              5.126
             ],
+            "closed_at": 9.202,
             "wer": 0.125,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 762.6
+            "latency_ms": 886.2
           },
           {
             "error": null,
             "text": "Can you slow down and repeat buenos noches?",
             "eot_times": [
-              5.001
+              5.091
             ],
+            "closed_at": 9.202,
             "wer": 0.125,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 761.3
+            "latency_ms": 850.6
           },
           {
             "error": null,
             "text": "Can you slow down and repeat buenos noches?",
             "eot_times": [
-              5.053
+              5.151
             ],
+            "closed_at": 9.202,
             "wer": 0.125,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 813.1
+            "latency_ms": 911.1
           }
         ],
         "deepgram": [
@@ -467,40 +506,43 @@
             "error": null,
             "text": "Can you slow down and repeat buenos noches?",
             "eot_times": [
-              4.689
+              4.692
             ],
+            "closed_at": 9.202,
             "wer": 0.125,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 448.6
+            "latency_ms": 451.8
           },
           {
             "error": null,
             "text": "Can you slow down and repeat buenos noches?",
             "eot_times": [
-              4.611
+              4.69
             ],
+            "closed_at": 9.202,
             "wer": 0.125,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 371.3
+            "latency_ms": 449.9
           },
           {
             "error": null,
             "text": "Can you slow down and repeat buenos noches?",
             "eot_times": [
-              4.717
+              4.831
             ],
+            "closed_at": 9.202,
             "wer": 0.125,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 477.0
+            "latency_ms": 591.3
           }
         ]
       }
@@ -514,42 +556,45 @@
         "assemblyai": [
           {
             "error": null,
-            "text": "Is tengo hambre the same as estoy hambriento?",
+            "text": "¿Es tengo hambre the same as estoy hambriento?",
             "eot_times": [
-              5.507
+              5.552
             ],
-            "wer": 0.0,
+            "closed_at": 9.901,
+            "wer": 0.125,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 567.1
+            "latency_ms": 612.4
           },
           {
             "error": null,
             "text": "Is tengo hambre the same as estoy hambriento?",
             "eot_times": [
-              5.509
+              5.583
             ],
+            "closed_at": 9.902,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 569.3
+            "latency_ms": 643.4
           },
           {
             "error": null,
             "text": "Is tengo hambre the same as estoy hambriento?",
             "eot_times": [
-              5.632
+              5.451
             ],
+            "closed_at": 9.903,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 692.0
+            "latency_ms": 511.2
           }
         ],
         "deepgram": [
@@ -557,40 +602,43 @@
             "error": null,
             "text": "y tengo hambre the same as estoy hambriento.",
             "eot_times": [
-              5.57
+              5.654
             ],
+            "closed_at": 9.922,
             "wer": 0.125,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 629.8
+            "latency_ms": 713.6
           },
           {
             "error": null,
             "text": "y tengo hambre the same as estoy hambriento.",
             "eot_times": [
-              5.57
+              5.571
             ],
+            "closed_at": 9.921,
             "wer": 0.125,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 630.3
+            "latency_ms": 630.7
           },
           {
             "error": null,
             "text": "y tengo hambre the same as estoy hambriento.",
             "eot_times": [
-              5.612
+              5.65
             ],
+            "closed_at": 9.923,
             "wer": 0.125,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 672.1
+            "latency_ms": 710.4
           }
         ]
       }
@@ -606,40 +654,43 @@
             "error": null,
             "text": "When do you— when do I use por and when do I use para?",
             "eot_times": [
-              5.103
+              5.857
             ],
+            "closed_at": 9.202,
             "wer": 0.2727,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 542.8
+            "latency_ms": 1297.1
           },
           {
             "error": null,
             "text": "When do you— when do I use por and when do I use para?",
             "eot_times": [
-              5.774
+              5.2
             ],
+            "closed_at": 9.202,
             "wer": 0.2727,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 1214.2
+            "latency_ms": 639.9
           },
           {
             "error": null,
             "text": "When do you— when do I use por and when do I use para?",
             "eot_times": [
-              14.232
+              5.849
             ],
+            "closed_at": 9.202,
             "wer": 0.2727,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 9671.7
+            "latency_ms": 1289.4
           }
         ],
         "deepgram": [
@@ -647,40 +698,43 @@
             "error": null,
             "text": "When do I when do I use pore and when do I use para?",
             "eot_times": [
-              4.898
+              4.979
             ],
+            "closed_at": 9.201,
             "wer": 0.3636,
             "term_acc": 0.5,
             "term_acc_accents": 0.5,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 338.0
+            "latency_ms": 418.9
           },
           {
             "error": null,
             "text": "When do I when do I use pore and when do I use para?",
             "eot_times": [
-              4.93
+              4.932
             ],
+            "closed_at": 9.201,
             "wer": 0.3636,
             "term_acc": 0.5,
             "term_acc_accents": 0.5,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 370.1
+            "latency_ms": 371.8
           },
           {
             "error": null,
             "text": "When do I when do I use pore and when do I use para?",
             "eot_times": [
-              4.894
+              5.011
             ],
+            "closed_at": 9.203,
             "wer": 0.3636,
             "term_acc": 0.5,
             "term_acc_accents": 0.5,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 333.6
+            "latency_ms": 451.3
           }
         ]
       }
@@ -696,40 +750,43 @@
             "error": null,
             "text": "How do I say I would like a coffee? Quisiera un café.",
             "eot_times": [
-              6.407
+              6.25
             ],
+            "closed_at": 10.302,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 746.5
+            "latency_ms": 589.7
           },
           {
             "error": null,
             "text": "How do I say I would like a coffee? Quisiera un café.",
             "eot_times": [
-              6.198
+              6.454
             ],
+            "closed_at": 10.302,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 538.0
+            "latency_ms": 794.3
           },
           {
             "error": null,
             "text": "How do I say I would like a coffee? Quisiera un café.",
             "eot_times": [
-              6.3
+              6.253
             ],
+            "closed_at": 10.303,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 640.0
+            "latency_ms": 592.9
           }
         ],
         "deepgram": [
@@ -737,40 +794,43 @@
             "error": null,
             "text": "How do I say I would like a coffee quisiera un café?",
             "eot_times": [
-              5.894
+              5.813
             ],
+            "closed_at": 10.322,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 233.6
+            "latency_ms": 152.6
           },
           {
             "error": null,
             "text": "How do I say I would like a coffee quisiera un café?",
             "eot_times": [
-              5.733
+              5.863
             ],
+            "closed_at": 10.321,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 72.8
+            "latency_ms": 202.7
           },
           {
             "error": null,
             "text": "How do I say I would like a coffee quisiera un café?",
             "eot_times": [
-              5.809
+              5.808
             ],
+            "closed_at": 10.321,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 149.3
+            "latency_ms": 148.3
           }
         ]
       }
@@ -786,40 +846,43 @@
             "error": null,
             "text": "¿Dónde está la estación de tren?",
             "eot_times": [
-              4.102
+              4.149
             ],
+            "closed_at": 8.402,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 421.9
+            "latency_ms": 468.8
           },
           {
             "error": null,
             "text": "¿Dónde está la estación de tren?",
             "eot_times": [
-              4.103
+              4.202
             ],
+            "closed_at": 8.401,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 423.1
+            "latency_ms": 522.2
           },
           {
             "error": null,
             "text": "¿Dónde está la estación de tren?",
             "eot_times": [
-              4.203
+              4.253
             ],
+            "closed_at": 8.402,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 523.1
+            "latency_ms": 573.5
           }
         ],
         "deepgram": [
@@ -827,40 +890,43 @@
             "error": null,
             "text": "¿Dónde está la estación de tren?",
             "eot_times": [
-              3.812
+              3.931
             ],
+            "closed_at": 8.403,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 132.5
+            "latency_ms": 250.9
           },
           {
             "error": null,
             "text": "¿Dónde está la estación de tren?",
             "eot_times": [
-              3.891
+              4.015
             ],
+            "closed_at": 8.402,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 210.6
+            "latency_ms": 334.7
           },
           {
             "error": null,
             "text": "¿Dónde está la estación de tren?",
             "eot_times": [
-              3.814
+              3.968
             ],
+            "closed_at": 8.402,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 134.5
+            "latency_ms": 287.6
           }
         ]
       }
@@ -876,40 +942,43 @@
             "error": null,
             "text": "Quisiera un café con leche, por favor.",
             "eot_times": [
-              4.692
+              4.821
             ],
+            "closed_at": 9.252,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 431.9
+            "latency_ms": 561.0
           },
           {
             "error": null,
             "text": "Quisiera un café con leche, por favor.",
             "eot_times": [
-              4.728
+              4.847
             ],
+            "closed_at": 9.252,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 468.4
+            "latency_ms": 587.0
           },
           {
             "error": null,
             "text": "Quisiera un café con leche, por favor.",
             "eot_times": [
-              4.703
+              4.815
             ],
+            "closed_at": 9.251,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 442.8
+            "latency_ms": 555.2
           }
         ],
         "deepgram": [
@@ -917,40 +986,43 @@
             "error": null,
             "text": "Quisiera un café con leche, por favor.",
             "eot_times": [
-              4.932
+              5.014
             ],
+            "closed_at": 9.282,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 672.2
+            "latency_ms": 753.5
           },
           {
             "error": null,
             "text": "Quisiera un café con leche, por favor.",
             "eot_times": [
-              5.015
+              5.088
             ],
+            "closed_at": 9.282,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 754.8
+            "latency_ms": 828.5
           },
           {
             "error": null,
             "text": "Quisiera un café con leche, por favor.",
             "eot_times": [
-              4.937
+              5.09
             ],
+            "closed_at": 9.282,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 677.1
+            "latency_ms": 830.3
           }
         ]
       }
@@ -966,40 +1038,43 @@
             "error": null,
             "text": "Mucho gusto, soy estudiante de español.",
             "eot_times": [
-              5.296
+              5.449
             ],
+            "closed_at": 9.652,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 535.9
+            "latency_ms": 689.4
           },
           {
             "error": null,
             "text": "Mucho gusto, soy estudiante de español.",
             "eot_times": [
-              5.309
+              5.449
             ],
+            "closed_at": 9.651,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 549.0
+            "latency_ms": 688.9
           },
           {
             "error": null,
             "text": "Mucho gusto, soy estudiante de español.",
             "eot_times": [
-              5.4
+              5.449
             ],
+            "closed_at": 9.652,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 639.7
+            "latency_ms": 689.3
           }
         ],
         "deepgram": [
@@ -1007,40 +1082,43 @@
             "error": null,
             "text": "Mucho gusto, soy estudiante de español.",
             "eot_times": [
-              5.294
+              5.45
             ],
+            "closed_at": 9.682,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 533.6
+            "latency_ms": 689.9
           },
           {
             "error": null,
             "text": "Mucho gusto, soy estudiante de español.",
             "eot_times": [
-              5.36
+              5.409
             ],
+            "closed_at": 9.683,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 600.1
+            "latency_ms": 648.6
           },
           {
             "error": null,
             "text": "Mucho gusto, soy estudiante de español.",
             "eot_times": [
-              5.377
+              5.407
             ],
+            "closed_at": 9.683,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 617.0
+            "latency_ms": 647.4
           }
         ]
       }
@@ -1056,40 +1134,43 @@
             "error": null,
             "text": "¿Cuánto cuesta el billete?",
             "eot_times": [
-              3.897
+              3.904
             ],
+            "closed_at": 7.801,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 537.5
+            "latency_ms": 544.3
           },
           {
             "error": null,
             "text": "¿Cuánto cuesta el billete?",
             "eot_times": [
-              3.908
+              4.101
             ],
+            "closed_at": 7.801,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 547.9
+            "latency_ms": 740.9
           },
           {
             "error": null,
             "text": "¿Cuánto cuesta el billete?",
             "eot_times": [
-              3.821
+              4.024
             ],
+            "closed_at": 7.802,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 461.4
+            "latency_ms": 664.0
           }
         ],
         "deepgram": [
@@ -1097,40 +1178,43 @@
             "error": null,
             "text": "¿Cuánto cuesta el viente?",
             "eot_times": [
-              3.536
+              3.651
             ],
+            "closed_at": 7.761,
             "wer": 0.25,
             "term_acc": 0.5,
             "term_acc_accents": 0.5,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 176.0
+            "latency_ms": 290.7
           },
           {
             "error": null,
             "text": "¿Cuánto cuesta el viente?",
             "eot_times": [
-              3.664
+              3.619
             ],
+            "closed_at": 7.763,
             "wer": 0.25,
             "term_acc": 0.5,
             "term_acc_accents": 0.5,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 304.4
+            "latency_ms": 259.4
           },
           {
             "error": null,
             "text": "¿Cuánto cuesta el viente?",
             "eot_times": [
-              3.569
+              3.668
             ],
+            "closed_at": 7.762,
             "wer": 0.25,
             "term_acc": 0.5,
             "term_acc_accents": 0.5,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 209.0
+            "latency_ms": 308.0
           }
         ]
       }
@@ -1146,40 +1230,43 @@
             "error": null,
             "text": "Tengo hambre y quiero comer.",
             "eot_times": [
-              4.514
+              4.551
             ],
+            "closed_at": 9.152,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 534.4
+            "latency_ms": 571.5
           },
           {
             "error": null,
             "text": "Tengo hambre y quiero comer.",
             "eot_times": [
-              4.561
+              4.608
             ],
+            "closed_at": 9.152,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 580.6
+            "latency_ms": 628.1
           },
           {
             "error": null,
             "text": "Tengo hambre y quiero comer.",
             "eot_times": [
-              4.542
+              4.552
             ],
+            "closed_at": 9.153,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 561.6
+            "latency_ms": 571.7
           }
         ],
         "deepgram": [
@@ -1187,40 +1274,43 @@
             "error": null,
             "text": "Tengo hambre y quiero comer.",
             "eot_times": [
-              4.529
+              4.533
             ],
+            "closed_at": 9.201,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 548.7
+            "latency_ms": 552.8
           },
           {
             "error": null,
             "text": "Tengo hambre y quiero comer.",
             "eot_times": [
-              4.495
+              4.612
             ],
+            "closed_at": 9.203,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 514.7
+            "latency_ms": 632.3
           },
           {
             "error": null,
             "text": "Tengo hambre y quiero comer.",
             "eot_times": [
-              4.566
+              4.655
             ],
+            "closed_at": 9.202,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 586.1
+            "latency_ms": 674.7
           }
         ]
       }
@@ -1236,40 +1326,43 @@
             "error": null,
             "text": "La cuenta, por favor.",
             "eot_times": [
-              3.001
+              3.048
             ],
+            "closed_at": 7.151,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 521.2
+            "latency_ms": 568.3
           },
           {
             "error": null,
             "text": "La cuenta, por favor.",
             "eot_times": [
-              3.019
+              3.149
             ],
+            "closed_at": 7.153,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 539.1
+            "latency_ms": 669.4
           },
           {
             "error": null,
             "text": "La cuenta, por favor.",
             "eot_times": [
-              3.018
+              3.051
             ],
+            "closed_at": 7.151,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 537.5
+            "latency_ms": 570.7
           }
         ],
         "deepgram": [
@@ -1277,40 +1370,43 @@
             "error": null,
             "text": "La cuenta, por favor.",
             "eot_times": [
-              2.907
+              3.024
             ],
+            "closed_at": 7.122,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 427.2
+            "latency_ms": 544.5
           },
           {
             "error": null,
             "text": "La cuenta, por favor.",
             "eot_times": [
-              2.933
+              3.01
             ],
+            "closed_at": 7.123,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 453.5
+            "latency_ms": 530.2
           },
           {
             "error": null,
             "text": "La cuenta, por favor.",
             "eot_times": [
-              2.973
+              3.087
             ],
+            "closed_at": 7.12,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 492.5
+            "latency_ms": 606.8
           }
         ]
       }
@@ -1326,40 +1422,43 @@
             "error": null,
             "text": "¿Dónde está la estación?",
             "eot_times": [
-              3.666
+              3.753
             ],
+            "closed_at": 7.802,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 486.0
+            "latency_ms": 573.0
           },
           {
             "error": null,
             "text": "¿Dónde está la estación?",
             "eot_times": [
-              3.7
+              3.659
             ],
+            "closed_at": 7.801,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 520.4
+            "latency_ms": 479.0
           },
           {
             "error": null,
             "text": "¿Dónde está la estación?",
             "eot_times": [
-              3.674
+              3.65
             ],
+            "closed_at": 7.803,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 493.9
+            "latency_ms": 470.2
           }
         ],
         "deepgram": [
@@ -1367,40 +1466,43 @@
             "error": null,
             "text": "donde está él estación.",
             "eot_times": [
-              3.447
-            ],
-            "wer": 0.0,
-            "term_acc": null,
-            "term_acc_accents": null,
-            "mistake_kept": true,
-            "cutoffs": 0,
-            "latency_ms": 266.8
-          },
-          {
-            "error": null,
-            "text": "donde está él estación.",
-            "eot_times": [
-              3.525
-            ],
-            "wer": 0.0,
-            "term_acc": null,
-            "term_acc_accents": null,
-            "mistake_kept": true,
-            "cutoffs": 0,
-            "latency_ms": 345.0
-          },
-          {
-            "error": null,
-            "text": "donde está él estación.",
-            "eot_times": [
               3.414
             ],
+            "closed_at": 7.842,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 234.3
+            "latency_ms": 233.7
+          },
+          {
+            "error": null,
+            "text": "donde está él estación.",
+            "eot_times": [
+              3.566
+            ],
+            "closed_at": 7.842,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 385.9
+          },
+          {
+            "error": null,
+            "text": "donde está él estación.",
+            "eot_times": [
+              3.412
+            ],
+            "closed_at": 7.842,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 232.0
           }
         ]
       }
@@ -1416,40 +1518,43 @@
             "error": null,
             "text": "Yo es estudiante.",
             "eot_times": [
-              4.134
+              4.167
             ],
+            "closed_at": 7.952,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 1653.6
+            "latency_ms": 1686.7
           },
           {
             "error": null,
             "text": "Yo es estudiante.",
             "eot_times": [
-              4.128
+              4.305
             ],
+            "closed_at": 7.953,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 1647.9
+            "latency_ms": 1825.1
           },
           {
             "error": null,
             "text": "Yo es estudiante.",
             "eot_times": [
-              4.134
+              4.258
             ],
+            "closed_at": 7.951,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 1654.1
+            "latency_ms": 1777.9
           }
         ],
         "deepgram": [
@@ -1457,40 +1562,43 @@
             "error": null,
             "text": "US estudiant",
             "eot_times": [
-              3.245
+              3.253
             ],
+            "closed_at": 8.002,
             "wer": 1.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 765.2
+            "latency_ms": 773.2
           },
           {
             "error": null,
             "text": "US estudiant",
             "eot_times": [
-              3.171
+              3.303
             ],
+            "closed_at": 8.002,
             "wer": 1.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 691.5
+            "latency_ms": 822.9
           },
           {
             "error": null,
             "text": "US estudiant",
             "eot_times": [
-              3.267
+              3.249
             ],
+            "closed_at": 8.002,
             "wer": 1.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 787.1
+            "latency_ms": 768.5
           }
         ]
       }
@@ -1506,40 +1614,43 @@
             "error": null,
             "text": "Tengo hambre.",
             "eot_times": [
-              2.302
+              2.414
             ],
+            "closed_at": 6.801,
             "wer": 0.5,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 562.3
+            "latency_ms": 674.3
           },
           {
             "error": null,
             "text": "Tengo hambre.",
             "eot_times": [
-              2.299
+              2.349
             ],
+            "closed_at": 6.803,
             "wer": 0.5,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 559.0
+            "latency_ms": 609.2
           },
           {
             "error": null,
             "text": "Tengo hambre.",
             "eot_times": [
-              2.377
+              2.349
             ],
+            "closed_at": 6.803,
             "wer": 0.5,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 637.3
+            "latency_ms": 608.8
           }
         ],
         "deepgram": [
@@ -1547,40 +1658,43 @@
             "error": null,
             "text": "Tengo hombre.",
             "eot_times": [
-              2.405
+              2.886
             ],
+            "closed_at": 6.802,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 665.5
+            "latency_ms": 1146.4
           },
           {
             "error": null,
             "text": "Tengo hombre.",
             "eot_times": [
-              2.454
+              2.455
             ],
+            "closed_at": 6.802,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 713.8
+            "latency_ms": 714.5
           },
           {
             "error": null,
             "text": "Tengo hombre.",
             "eot_times": [
-              2.492
+              2.453
             ],
+            "closed_at": 6.803,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 752.4
+            "latency_ms": 713.2
           }
         ]
       }
@@ -1596,40 +1710,43 @@
             "error": null,
             "text": "Yo tiene 20 años.",
             "eot_times": [
-              3.701
+              3.888
             ],
+            "closed_at": 7.802,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 381.4
+            "latency_ms": 567.9
           },
           {
             "error": null,
             "text": "Yo tiene 20 años.",
             "eot_times": [
-              3.702
+              3.919
             ],
+            "closed_at": 7.803,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 382.4
+            "latency_ms": 599.0
           },
           {
             "error": null,
             "text": "Yo tiene 20 años.",
             "eot_times": [
-              3.703
+              3.752
             ],
+            "closed_at": 7.802,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 382.7
+            "latency_ms": 432.2
           }
         ],
         "deepgram": [
@@ -1637,40 +1754,43 @@
             "error": null,
             "text": "y tiene veinte años.",
             "eot_times": [
-              3.654
+              3.843
             ],
+            "closed_at": 7.842,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 334.4
+            "latency_ms": 523.3
           },
           {
             "error": null,
             "text": "y tiene veinte años.",
             "eot_times": [
-              3.763
+              3.852
             ],
+            "closed_at": 7.843,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 442.5
+            "latency_ms": 532.3
           },
           {
             "error": null,
             "text": "y tiene veinte años.",
             "eot_times": [
-              3.731
+              3.735
             ],
+            "closed_at": 7.842,
             "wer": 0.25,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 410.9
+            "latency_ms": 414.7
           }
         ]
       }
@@ -1683,41 +1803,46 @@
       "results": {
         "assemblyai": [
           {
-            "error": "RuntimeError('{\"type\": \"Error\", \"error_code\": 1008, \"error\": \"Unauthorized Connection: Too many concurrent sessions\"}')",
-            "text": "",
-            "eot_times": [],
-            "wer": null,
-            "term_acc": null,
-            "term_acc_accents": null,
-            "mistake_kept": null,
-            "cutoffs": 0,
-            "latency_ms": null
-          },
-          {
             "error": null,
             "text": "Ella es cansada.",
             "eot_times": [
-              2.505
+              2.548
             ],
+            "closed_at": 6.852,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 505.4
+            "latency_ms": 548.2
           },
           {
             "error": null,
             "text": "Ella es cansada.",
             "eot_times": [
-              2.401
+              2.568
             ],
+            "closed_at": 6.853,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 401.4
+            "latency_ms": 568.0
+          },
+          {
+            "error": null,
+            "text": "Ella es cansada.",
+            "eot_times": [
+              2.455
+            ],
+            "closed_at": 6.852,
+            "wer": 0.0,
+            "term_acc": null,
+            "term_acc_accents": null,
+            "mistake_kept": true,
+            "cutoffs": 0,
+            "latency_ms": 455.2
           }
         ],
         "deepgram": [
@@ -1725,40 +1850,43 @@
             "error": null,
             "text": "a s cansada",
             "eot_times": [
-              3.226
+              3.297
             ],
+            "closed_at": 6.883,
             "wer": 0.6667,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 1225.5
+            "latency_ms": 1297.0
           },
           {
             "error": null,
             "text": "a s cansada",
             "eot_times": [
-              3.294
+              3.362
             ],
+            "closed_at": 6.881,
             "wer": 0.6667,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 1293.8
+            "latency_ms": 1362.1
           },
           {
             "error": null,
             "text": "a s cansada",
             "eot_times": [
-              3.309
+              3.252
             ],
+            "closed_at": 6.883,
             "wer": 0.6667,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": false,
             "cutoffs": 0,
-            "latency_ms": 1309.2
+            "latency_ms": 1251.6
           }
         ]
       }
@@ -1774,40 +1902,43 @@
             "error": null,
             "text": "Quiero una café.",
             "eot_times": [
-              2.595
+              2.548
             ],
+            "closed_at": 6.703,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 615.2
+            "latency_ms": 568.5
           },
           {
             "error": null,
             "text": "Quiero una café.",
             "eot_times": [
-              2.603
+              2.552
             ],
+            "closed_at": 6.703,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 622.9
+            "latency_ms": 572.4
           },
           {
             "error": null,
             "text": "Quiero una café.",
             "eot_times": [
-              2.495
+              2.546
             ],
+            "closed_at": 6.703,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 515.3
+            "latency_ms": 566.4
           }
         ],
         "deepgram": [
@@ -1815,40 +1946,43 @@
             "error": null,
             "text": "Quiero una café.",
             "eot_times": [
-              2.533
+              2.61
             ],
+            "closed_at": 6.721,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 552.8
+            "latency_ms": 630.3
           },
           {
             "error": null,
             "text": "Quiero una café.",
             "eot_times": [
-              2.619
+              2.717
             ],
+            "closed_at": 6.723,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 638.6
+            "latency_ms": 737.1
           },
           {
             "error": null,
             "text": "Quiero una café.",
             "eot_times": [
-              2.624
+              2.66
             ],
+            "closed_at": 6.722,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": true,
             "cutoffs": 0,
-            "latency_ms": 643.8
+            "latency_ms": 680.4
           }
         ]
       }
@@ -1864,40 +1998,43 @@
             "error": null,
             "text": "How do you say butterfly in Spanish?",
             "eot_times": [
-              8.298
+              8.382
             ],
+            "closed_at": 10.903,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 2178.1
+            "latency_ms": 2261.7
           },
           {
             "error": null,
             "text": "How do you say butterfly in Spanish?",
             "eot_times": [
-              8.263
+              8.395
             ],
+            "closed_at": 10.902,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 2143.1
+            "latency_ms": 2274.8
           },
           {
             "error": null,
             "text": "How do you say butterfly in Spanish?",
             "eot_times": [
-              8.299
+              8.305
             ],
+            "closed_at": 10.901,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 2178.9
+            "latency_ms": 2184.7
           }
         ],
         "deepgram": [
@@ -1905,40 +2042,43 @@
             "error": null,
             "text": "How do you say butterfly in Spanish?",
             "eot_times": [
-              6.377
+              6.515
             ],
+            "closed_at": 10.882,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 257.0
+            "latency_ms": 394.8
           },
           {
             "error": null,
             "text": "How do you say butterfly in Spanish?",
             "eot_times": [
-              6.392
+              6.493
             ],
+            "closed_at": 10.882,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 271.9
+            "latency_ms": 372.6
           },
           {
             "error": null,
             "text": "How do you say butterfly in Spanish?",
             "eot_times": [
-              6.403
+              6.491
             ],
+            "closed_at": 10.883,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 282.8
+            "latency_ms": 370.9
           }
         ]
       }
@@ -1954,40 +2094,43 @@
             "error": null,
             "text": "Is it La Mariposa or El Mariposa?",
             "eot_times": [
-              7.561
+              7.733
             ],
+            "closed_at": 10.152,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 1841.2
+            "latency_ms": 2013.0
           },
           {
             "error": null,
             "text": "Is it La Mariposa or El Mariposa?",
             "eot_times": [
-              7.563
+              7.63
             ],
+            "closed_at": 10.152,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 1843.2
+            "latency_ms": 1909.9
           },
           {
             "error": null,
             "text": "Is it La Mariposa or El Mariposa?",
             "eot_times": [
-              7.618
+              7.653
             ],
+            "closed_at": 10.152,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 1898.0
+            "latency_ms": 1932.6
           }
         ],
         "deepgram": [
@@ -1995,40 +2138,43 @@
             "error": null,
             "text": "Is it lamari posa or lmari posa?",
             "eot_times": [
-              5.983
+              6.13
             ],
+            "closed_at": 10.163,
             "wer": 0.5714,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 263.5
+            "latency_ms": 410.5
           },
           {
             "error": null,
             "text": "Is it lamari posa or lmari posa?",
             "eot_times": [
-              5.895
+              6.056
             ],
+            "closed_at": 10.163,
             "wer": 0.5714,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 175.1
+            "latency_ms": 335.8
           },
           {
             "error": null,
             "text": "Is it lamari posa or lmari posa?",
             "eot_times": [
-              5.972
+              6.053
             ],
+            "closed_at": 10.163,
             "wer": 0.5714,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 252.4
+            "latency_ms": 332.5
           }
         ]
       }
@@ -2044,40 +2190,43 @@
             "error": null,
             "text": "What's the word for train station?",
             "eot_times": [
-              5.701
+              5.788
             ],
+            "closed_at": 9.551,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 681.1
+            "latency_ms": 768.3
           },
           {
             "error": null,
             "text": "What's the word for train station?",
             "eot_times": [
-              5.659
+              5.548
             ],
+            "closed_at": 9.553,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 638.8
+            "latency_ms": 528.3
           },
           {
             "error": null,
             "text": "What's the word for train station?",
             "eot_times": [
-              5.612
+              5.548
             ],
+            "closed_at": 9.553,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 592.2
+            "latency_ms": 527.6
           }
         ],
         "deepgram": [
@@ -2085,40 +2234,43 @@
             "error": null,
             "text": "What's the word for train station?",
             "eot_times": [
-              5.137
+              5.371
             ],
+            "closed_at": 9.522,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 117.1
+            "latency_ms": 351.0
           },
           {
             "error": null,
             "text": "What's the word for train station?",
             "eot_times": [
-              5.136
+              5.243
             ],
+            "closed_at": 9.521,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 115.9
+            "latency_ms": 222.6
           },
           {
             "error": null,
             "text": "What's the word for train station?",
             "eot_times": [
-              5.142
+              5.172
             ],
+            "closed_at": 9.523,
             "wer": 0.0,
             "term_acc": null,
             "term_acc_accents": null,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 121.8
+            "latency_ms": 152.1
           }
         ]
       }
@@ -2134,40 +2286,43 @@
             "error": null,
             "text": "Can you repeat buenos noches slowly?",
             "eot_times": [
-              6.211
+              6.318
             ],
+            "closed_at": 10.351,
             "wer": 0.1667,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 531.0
+            "latency_ms": 638.1
           },
           {
             "error": null,
             "text": "Can you repeat buenos noches slowly?",
             "eot_times": [
-              6.246
+              6.348
             ],
+            "closed_at": 10.352,
             "wer": 0.1667,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 566.3
+            "latency_ms": 668.2
           },
           {
             "error": null,
             "text": "Can you repeat buenos noches slowly?",
             "eot_times": [
-              6.403
+              6.375
             ],
+            "closed_at": 10.353,
             "wer": 0.1667,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 723.1
+            "latency_ms": 695.2
           }
         ],
         "deepgram": [
@@ -2175,43 +2330,46 @@
             "error": null,
             "text": "Can you repeat Buenas noches, slowly.",
             "eot_times": [
-              3.572,
-              6.253
+              3.655,
+              6.401
             ],
+            "closed_at": 10.321,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 1,
-            "latency_ms": 572.8
+            "latency_ms": 721.4
           },
           {
             "error": null,
             "text": "Can you repeat Buenas noches, slowly.",
             "eot_times": [
-              3.572,
-              6.294
+              3.618,
+              6.296
             ],
+            "closed_at": 10.323,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 1,
-            "latency_ms": 613.7
+            "latency_ms": 616.0
           },
           {
             "error": null,
             "text": "Can you repeat Buenas noches, slowly.",
             "eot_times": [
-              3.607,
-              6.254
+              3.613,
+              6.293
             ],
+            "closed_at": 10.323,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 1,
-            "latency_ms": 574.2
+            "latency_ms": 613.3
           }
         ]
       }
@@ -2227,46 +2385,49 @@
             "error": null,
             "text": "I want to say I'm hungry. Is it tengo hambre?",
             "eot_times": [
-              3.667,
-              5.289,
-              6.865
+              3.798,
+              5.177,
+              6.978
             ],
+            "closed_at": 11.201,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 2,
-            "latency_ms": 465.0
+            "latency_ms": 578.2
           },
           {
             "error": null,
             "text": "I want to say I'm hungry. Is it tengo hambre?",
             "eot_times": [
-              3.662,
-              5.103,
-              6.965
+              3.742,
+              5.152,
+              6.853
             ],
+            "closed_at": 11.201,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 2,
-            "latency_ms": 564.5
+            "latency_ms": 452.8
           },
           {
             "error": null,
             "text": "I want to say I'm hungry. Is it tengo hambre?",
             "eot_times": [
-              3.81,
-              5.124,
-              7.175
+              3.771,
+              5.31,
+              6.918
             ],
+            "closed_at": 11.203,
             "wer": 0.0,
             "term_acc": 1.0,
             "term_acc_accents": 1.0,
             "mistake_kept": null,
             "cutoffs": 2,
-            "latency_ms": 775.3
+            "latency_ms": 517.9
           }
         ],
         "deepgram": [
@@ -2274,14 +2435,29 @@
             "error": null,
             "text": "I want to say I'm hungry. Is it tango hambre?",
             "eot_times": [
-              6.771
+              6.855
             ],
+            "closed_at": 11.201,
             "wer": 0.0909,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 370.6
+            "latency_ms": 454.9
+          },
+          {
+            "error": null,
+            "text": "I want to say I'm hungry. Is it tango hambre?",
+            "eot_times": [
+              6.772
+            ],
+            "closed_at": 11.201,
+            "wer": 0.0909,
+            "term_acc": 0.0,
+            "term_acc_accents": 0.0,
+            "mistake_kept": null,
+            "cutoffs": 0,
+            "latency_ms": 371.6
           },
           {
             "error": null,
@@ -2289,25 +2465,13 @@
             "eot_times": [
               6.77
             ],
+            "closed_at": 11.203,
             "wer": 0.0909,
             "term_acc": 0.0,
             "term_acc_accents": 0.0,
             "mistake_kept": null,
             "cutoffs": 0,
-            "latency_ms": 369.8
-          },
-          {
-            "error": null,
-            "text": "I want to say I'm hungry. Is it tango hambre?",
-            "eot_times": [
-              7.136
-            ],
-            "wer": 0.0909,
-            "term_acc": 0.0,
-            "term_acc_accents": 0.0,
-            "mistake_kept": null,
-            "cutoffs": 0,
-            "latency_ms": 735.7
+            "latency_ms": 370.1
           }
         ]
       }
