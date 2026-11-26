@@ -31,4 +31,4 @@ tts:
   language: es
 
 sample_rate: 16000
-trailing_silence_s: 2.0
+trailing_silence_s: 4.0   # silence after each clip; longer than Flux eot_timeout_ms (3 s) so either provider can end the turn on its own before we close

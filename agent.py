@@ -66,9 +66,12 @@ def make_stt(provider: str, cfg: dict):
             mode=c["mode"],
             previous_context_n_turns=c["previous_context_n_turns"],
             language_codes=cfg["languages"],
+            buffer_size_seconds=c["chunk_ms"] / 1000,
         )
     if provider == "deepgram":
-        return deepgram.STTv2(model=cfg["deepgram"]["model"], language_hint=cfg["languages"])
+        c = cfg["deepgram"]
+        return deepgram.STTv2(model=c["model"], language_hint=cfg["languages"],
+                              audio_chunk_duration_ms=c["chunk_ms"])
     raise ValueError(f"unknown STT_PROVIDER {provider!r} (use 'assemblyai' or 'deepgram')")
 
 

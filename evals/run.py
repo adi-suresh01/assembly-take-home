@@ -34,14 +34,22 @@ def select_clips(clips: list[dict], clips_dir: Path, only: set[str] | None) -> t
     return present, missing
 
 
+def results_path(only: set[str] | None, providers: list[str]) -> Path | None:
+    """Only a full run (every clip, every provider) replaces the committed results.json."""
+    return RESULTS if only is None and sorted(providers) == sorted(STREAMERS) else None
+
+
 def score(clip: dict, provider: str, result, end_s: float) -> dict:
     terms = clip.get("spanish_terms", [])
     row = {"provider": provider, "id": clip["id"], "category": clip["category"], "error": result.error,
-           "text": result.text, "eot_times": [round(t, 3) for t, _ in result.turns]}
+           "text": result.text, "eot_times": [round(t, 3) for t, _ in result.turns],
+           "closed_at": None if result.closed_at is None else round(result.closed_at, 3)}
     if result.error:
         return {**row, "wer": None, "term_acc": None, "term_acc_accents": None,
                 "mistake_kept": None, "cutoffs": 0, "latency_ms": None}
-    eots = [t for t, _ in result.turns]
+    # An end-of-turn that only came after we closed the stream was forced by the close, not
+    # decided by the provider: its words count, its timing doesn't ("no end-of-turn").
+    eots = [t for t, _ in result.turns if result.closed_at is None or t <= result.closed_at]
     return {
         **row,
         "wer": round(wer(clip["text"], result.text), 4),
@@ -123,9 +131,13 @@ def main() -> None:
     report = asyncio.run(run(args.providers.split(","),
                              set(args.only.split(",")) if args.only else None, args.verbose, args.repeats))
     print_table(report["summary"])
-    RESULTS.parent.mkdir(exist_ok=True)
-    RESULTS.write_text(json.dumps(report, indent=2, ensure_ascii=False))
-    console.print(f"wrote {RESULTS.relative_to(ROOT)}")
+    out = results_path(set(args.only.split(",")) if args.only else None, args.providers.split(","))
+    if out is None:
+        console.print("[yellow]filtered run: results/results.json left unchanged[/]")
+        return
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(json.dumps(report, indent=2, ensure_ascii=False))
+    console.print(f"wrote {out.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

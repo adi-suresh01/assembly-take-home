@@ -24,6 +24,7 @@ class StreamResult:
     provider: str
     turns: list[tuple[float, str]] = field(default_factory=list)
     error: str | None = None
+    closed_at: float | None = None  # when the close message went out; later end-of-turns were forced by it
 
     @property
     def text(self) -> str:
@@ -47,12 +48,14 @@ async def _stream(provider, url, headers, samples, chunk_ms, sample_rate, traili
 
     async def send(ws):
         nonlocal t0
-        t0 = time.monotonic()
+        t0 = time.monotonic()  # audio time zero
         for i, offset in enumerate(range(0, len(audio), step)):
-            await ws.send(audio[offset:offset + step])
+            # Like a live mic: a chunk can only go out once all of its audio has been "spoken".
             delay = t0 + (i + 1) * chunk_ms / 1000 - time.monotonic()
             if delay > 0:
                 await asyncio.sleep(delay)
+            await ws.send(audio[offset:offset + step])
+        result.closed_at = time.monotonic() - t0
         await ws.send(json.dumps(close_msg))
 
     async def receive(ws):

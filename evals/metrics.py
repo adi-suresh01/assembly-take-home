@@ -61,6 +61,8 @@ def speech_end_s(samples: np.ndarray, sample_rate: int) -> float:
         return 0.0
     threshold = max(rms.max() * 10 ** (-30 / 20), np.percentile(rms, 20) * 10 ** (10 / 20))
     loud = rms > threshold
+    if not loud.any():  # silence or steady noise: no speech to end
+        return 0.0
     runs = np.nonzero(np.convolve(loud, np.ones(min_run), "valid") == min_run)[0]
     last = runs[-1] + min_run - 1 if len(runs) else np.nonzero(loud)[0][-1]
     return float((last + 1) * frame / sample_rate)
@@ -97,6 +99,8 @@ def summarize(rows: list[dict]) -> dict[str, dict]:
         out[provider] = {
             "clips": len(prs),
             "wer": _mean([r["wer"] for r in ok]),
+            "wer_by_category": {cat: _mean([r["wer"] for r in ok if r["category"] == cat])
+                                for cat in dict.fromkeys(r["category"] for r in ok)},
             "term_acc": _mean([r["term_acc"] for r in ok]),
             "term_acc_accents": _mean([r["term_acc_accents"] for r in ok]),
             "mistakes_kept": f"{sum(bool(r['mistake_kept']) for r in m_rows)}/{len(m_rows)}",

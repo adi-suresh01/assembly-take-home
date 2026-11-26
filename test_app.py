@@ -1,4 +1,6 @@
+import json
 import os
+import time
 import wave
 from collections import Counter
 from pathlib import Path
@@ -19,7 +21,7 @@ from evals.metrics import (
     wer,
 )
 from evals.providers import STREAMERS, assemblyai_query, read_pcm16
-from evals.run import select_clips
+from evals.run import RESULTS, results_path, score, select_clips
 
 
 # --- agent helpers -----------------------------------------------------------
@@ -36,7 +38,11 @@ def test_make_stt_selects_provider(monkeypatch):
     assert aai._opts.mode == "balanced"
     assert not isinstance(aai._opts.min_turn_silence, int)
     assert not isinstance(aai._opts.max_turn_silence, int)
-    assert isinstance(make_stt("deepgram", cfg), deepgram.STTv2)
+    dg = make_stt("deepgram", cfg)
+    assert isinstance(dg, deepgram.STTv2)
+    # The agent streams audio in the same chunk sizes the eval measured.
+    assert aai._opts.buffer_size_seconds == cfg["assemblyai"]["chunk_ms"] / 1000
+    assert dg._opts.audio_chunk_duration_ms == cfg["deepgram"]["chunk_ms"]
     with pytest.raises(ValueError):
         make_stt("whisper", cfg)
 
@@ -111,6 +117,12 @@ def test_speech_end_s_ignores_room_noise_and_key_click():
     assert speech_end_s(audio, sr) == pytest.approx(1.0, abs=0.05)
 
 
+def test_speech_end_s_without_speech_does_not_crash():
+    rng = np.random.default_rng(1)
+    assert speech_end_s(np.full(16000, 5, np.int16), 16000) == 0.0
+    assert speech_end_s(rng.normal(0, 30, 16000).astype(np.int16), 16000) == 0.0
+
+
 def test_cutoffs_and_latency():
     assert cutoffs([1.2, 3.4], 3.0) == 1
     assert latency_ms([1.2, 3.4], 3.0) == pytest.approx(400)
@@ -137,6 +149,14 @@ def test_summarize_skips_errors():
     assert s["mistakes_kept"] == "2/2" and s["latency_p50_ms"] == 300.0
 
 
+def test_summarize_reports_wer_by_category():
+    base = dict(provider="deepgram", error=None, term_acc=None, term_acc_accents=None,
+                mistake_kept=None, cutoffs=0, latency_ms=300.0)
+    rows = [{**base, "category": "Q", "wer": 0.2}, {**base, "category": "Q", "wer": 0.4},
+            {**base, "category": "A", "wer": 0.0}]
+    assert summarize(rows)["deepgram"]["wer_by_category"] == {"Q": pytest.approx(0.3), "A": 0.0}
+
+
 # --- streaming + runner --------------------------------------------------------
 
 def test_read_pcm16_rejects_wrong_format(tmp_path):
@@ -156,6 +176,56 @@ def test_select_clips_reports_missing(tmp_path):
     present, missing = select_clips(clips, tmp_path, None)
     assert [c["id"] for c in present] == ["Q01"] and missing == ["M01"]
     assert select_clips(clips, tmp_path, {"M"}) == ([], ["M01"])
+
+
+def test_only_full_runs_write_results_json():
+    both = ["assemblyai", "deepgram"]
+    assert results_path(None, both) == RESULTS and results_path(None, both[::-1]) == RESULTS
+    assert results_path({"M"}, both) is None
+    assert results_path(None, ["assemblyai"]) is None
+
+
+async def _fake_stream(samples, chunk_ms=50):
+    """Stream to a local stand-in STT server. It logs when each audio chunk arrives and only
+    sends its end-of-turn after the client's close message, like a turn the server never ended."""
+    from websockets.asyncio.server import serve
+
+    from evals.providers import _stream
+    arrivals = []
+
+    async def handler(ws):
+        opened = time.monotonic()
+        async for msg in ws:
+            if isinstance(msg, bytes):
+                arrivals.append(time.monotonic() - opened)
+            else:
+                await ws.send(json.dumps({"type": "eot", "text": "hola"}))
+                await ws.send(json.dumps({"type": "done"}))
+
+    def parse(m):
+        return {"eot": ("eot", m.get("text"), 0), "done": ("done", "", None)}.get(m["type"], (None, "", None))
+
+    async with serve(handler, "127.0.0.1", 0) as server:
+        port = server.sockets[0].getsockname()[1]
+        result = await _stream("fake", f"ws://127.0.0.1:{port}", {}, samples, chunk_ms, 16000, 0.0,
+                               {"type": "close"}, parse)
+    return result, arrivals
+
+
+@pytest.mark.asyncio
+async def test_stream_sends_each_chunk_only_after_its_audio_has_elapsed():
+    _, arrivals = await _fake_stream(np.zeros(3200, np.int16))  # 0.2 s = four 50 ms chunks
+    assert len(arrivals) == 4
+    assert arrivals[0] >= 0.045  # a live mic can't send the first 50 ms before 50 ms have passed
+
+
+@pytest.mark.asyncio
+async def test_end_of_turn_after_close_is_not_scored_as_latency():
+    result, _ = await _fake_stream(np.zeros(3200, np.int16))
+    assert result.error is None and result.text == "hola"  # the words still count for accuracy
+    row = score({"id": "X", "category": "A", "text": "hola"}, "fake", result, end_s=0.1)
+    assert row["wer"] == 0.0
+    assert row["latency_ms"] is None and row["cutoffs"] == 0
 
 
 @pytest.mark.parametrize("provider,key", [("assemblyai", "ASSEMBLYAI_API_KEY"), ("deepgram", "DEEPGRAM_API_KEY")])
