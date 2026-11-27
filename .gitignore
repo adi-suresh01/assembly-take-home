@@ -15,3 +15,4 @@ __pycache__/
 results/live_turns.jsonl
 voicedrive/node_modules/
 voicedrive/dist/
+voicedrive/clips/

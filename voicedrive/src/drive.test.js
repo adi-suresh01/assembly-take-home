@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { LANES, applyActions, createWorld, laneX, step } from "./drive.js";
+import { LANES, LENGTH, applyActions, createWorld, laneX, step } from "./drive.js";
 
 const run = (world, seconds) => {
   for (let i = 0; i < seconds * 60; i++) step(world, 1 / 60);
@@ -111,7 +111,8 @@ test("never drives into another vehicle", () => {
     step(w, 1 / 60);
     for (const v of w.traffic) {
       const sameLane = Math.abs(v.x - w.player.x) < 2.2;
-      expect(sameLane && Math.abs(v.z - w.player.z) < 4.5).toBe(false);
+      const touching = Math.abs(v.z - w.player.z) < (LENGTH[v.kind] + LENGTH.car) / 2;
+      expect(sameLane && touching).toBe(false);
     }
   }
 });

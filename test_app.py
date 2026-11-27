@@ -246,3 +246,11 @@ def test_token_request_is_short_lived_streaming():
     body = token_request_body()
     assert body["product"] == "streaming"
     assert 1 <= body["expires_in_seconds"] <= 60
+
+
+def test_command_request_forwards_prompt_to_llm_gateway():
+    from voicedrive.server import command_request_body
+    body = command_request_body("gemma-4-31b", "Driver: lane left")
+    assert body["model"] == "gemma-4-31b"
+    assert body["messages"] == [{"role": "user", "content": "Driver: lane left"}]
+    assert 0 < body["max_tokens"] <= 300

@@ -8,7 +8,9 @@ const LANE_SPEED = LANE_WIDTH; // lateral m/s, so a lane change takes ~1 s
 const ACCEL = 2; // m/s², gentle speed changes
 const BRAKE = 9; // m/s², the most the car will brake to keep a gap
 const PLAN_BRAKE = 6; // m/s², what the safe-speed rule assumes (less than BRAKE, so it always holds)
-const MIN_GAP = 8; // m, centre to centre, bumper room included
+const BUMPER = 3.5; // m of space kept between bumpers
+export const LENGTH = { car: 4.6, truck: 16 }; // m
+const len = (v) => LENGTH[v.kind ?? "car"];
 const SAME_LANE = 2.6; // m of lateral overlap that counts as "in my lane"
 const COLORS = ["red", "blue", "white", "black"];
 
@@ -28,7 +30,7 @@ export function createWorld(seed = 1) {
   const w = {
     rand: rng(seed),
     nextId: 1,
-    player: { lane: 1, x: laneX(1), z: 0, speedMph: 55, targetMph: 55 },
+    player: { kind: "car", lane: 1, x: laneX(1), z: 0, speedMph: 55, targetMph: 55 },
     traffic: [],
     spawnTraffic: true,
     queue: [],
@@ -45,7 +47,7 @@ export function createWorld(seed = 1) {
 function spawn(w, z, kind) {
   for (let tries = 0; tries < 8; tries++) {
     const lane = Math.floor(w.rand() * LANES);
-    if (w.traffic.some((v) => v.lane === lane && Math.abs(v.z - z) < 35)) continue;
+    if (w.traffic.some((v) => v.lane === lane && Math.abs(v.z - z) < 40)) continue;
     const truck = (kind ?? (w.rand() < 0.3 ? "truck" : "car")) === "truck";
     w.traffic.push({
       id: w.nextId++,
@@ -74,7 +76,7 @@ const ahead = (w, from, x, others) =>
 // Fastest speed (m/s) from which we can still stop behind `obstacle` with room to spare.
 function safeSpeed(me, obstacle) {
   if (!obstacle) return Infinity;
-  const gap = obstacle.z - me.z - MIN_GAP;
+  const gap = obstacle.z - me.z - (len(me) + len(obstacle)) / 2 - BUMPER;
   return obstacle.speedMph * MPH + Math.sqrt(2 * PLAN_BRAKE * Math.max(0, gap));
 }
 
@@ -85,7 +87,7 @@ function laneIsFree(w, lane) {
     if (v.lane !== lane) return false;
     const dz = v.z - p.z;
     const closing = dz > 0 ? vp - v.speedMph * MPH : v.speedMph * MPH - vp;
-    const need = MIN_GAP + 4 + Math.max(0, closing) * 2.5;
+    const need = (len(p) + len(v)) / 2 + BUMPER + 4 + Math.max(0, closing) * 2.5;
     return Math.abs(dz) < need;
   });
 }
@@ -116,9 +118,9 @@ function runAction(w, a) {
     case "assemble":
       w.assembled = true;
       w.traffic.forEach((v, i) => {
-        const row = Math.floor(i / 3) + 1;
-        const col = (i % 3) - 1;
-        v.slot = { lane: Math.min(LANES - 1, Math.max(0, p.lane + col * (row % 2 ? 1 : 2))), dz: -row * 11 };
+        // Rows of up to four behind the player, one per lane, like a convoy forming up.
+        const row = Math.floor(i / LANES) + 1;
+        v.slot = { lane: i % LANES, dz: -row * (v.kind === "truck" ? 22 : 14) - (i % 2) * 3 };
       });
       return true;
     case "lane": {
@@ -172,7 +174,7 @@ function overtake(w, a) {
   }
   if (a.phase === "pass") {
     p.targetMph = Math.max(a.keepMph, t.speedMph + 15);
-    if (p.z > t.z + 14) a.phase = a.home === t.lane ? "back" : "done";
+    if (p.z > t.z + (len(t) + len(p)) / 2 + 8) a.phase = a.home === t.lane ? "back" : "done";
   }
   if (a.phase === "back") {
     if (laneIsFree(w, a.home)) {
