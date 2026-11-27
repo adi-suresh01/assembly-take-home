@@ -31,6 +31,17 @@ uv run python -m evals.record    # record your own clips (optional)
 uv run pytest                    # unit tests, plus live smoke tests when keys are set
 ```
 
+**VoiceDrive** (the extra-credit demo) also needs [Node.js](https://nodejs.org/) 18 or newer and only
+`ASSEMBLYAI_API_KEY`. Run each in its own terminal, then open http://localhost:5173 in Chrome:
+
+```bash
+uv run python voicedrive/server.py              # keeps the API key server-side
+cd voicedrive && npm install && npm run dev     # the 3D demo
+cd voicedrive && npm test                       # its unit tests
+```
+
+Hold **Space** to talk. More in [Extra credit: VoiceDrive](#extra-credit-voicedrive).
+
 Each turn in the console prints what the speech-to-text heard and how long it took to decide the
 learner had finished:
 
