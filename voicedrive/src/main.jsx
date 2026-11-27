@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { describe, parseCommand } from "./commands.js";
 import { createVoice } from "./voice.js";
+import { App } from "./App.jsx";
 
 const Q = new URLSearchParams(location.search);
 const MODEL = Q.get("model") || "gemma-4-31b";
@@ -65,4 +66,8 @@ function Spike() {
   );
 }
 
-createRoot(document.getElementById("root")).render(<Spike />);
+addEventListener("error", (e) => console.error("PAGE ERROR", e.message, e.filename, e.lineno));
+addEventListener("unhandledrejection", (e) => console.error("PAGE REJECTION", String(e.reason)));
+// Guard against Vite hot reload creating a second root (and a second mic socket).
+window.__root ??= createRoot(document.getElementById("root"));
+window.__root.render(new URLSearchParams(location.search).has("spike") ? <Spike /> : <App />);

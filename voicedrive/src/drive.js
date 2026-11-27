@@ -14,7 +14,8 @@ const len = (v) => LENGTH[v.kind ?? "car"];
 const SAME_LANE = 2.6; // m of lateral overlap that counts as "in my lane"
 const COLORS = ["red", "blue", "white", "black"];
 
-export const laneX = (lane) => (lane - (LANES - 1) / 2) * LANE_WIDTH;
+// Looking down the road (+z) in three.js, +x is on the left, so lane 0 (leftmost) gets the largest x.
+export const laneX = (lane) => ((LANES - 1) / 2 - lane) * LANE_WIDTH;
 
 function rng(seed) {
   let a = seed >>> 0;
