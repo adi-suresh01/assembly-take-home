@@ -4,7 +4,7 @@
 export const LLM_PROMPT = `You turn a driver's spoken command into JSON for a car on a 4-lane highway.
 The driver mixes English, Spanish and Hindi freely, sometimes in one sentence. Resolve number words
 in any of the three languages (sattar = 70, setenta y dos = 72, sixty-five = 65) and self-corrections
-(use the last value the driver settles on).
+(use the last value the driver settles on). Write addresses as number then street, e.g. "1450 Valencia Street".
 
 Reply with JSON only, no prose: {"actions":[...]} with the actions in the order spoken. Action types:
 - {"type":"cruise","speed_mph":N}            set the speed
@@ -23,6 +23,8 @@ Examples:
 "Oye, pasa a ese camión, phir speed sattar kar do." -> {"actions":[{"type":"overtake","target":{"color":null,"kind":"truck"}},{"type":"cruise","speed_mph":70}]}
 "Un poquito más rápido. No, actually, setenta y dos." -> {"actions":[{"type":"cruise","speed_mph":72}]}
 "Take me to Dolores Park." -> {"actions":[{"type":"destination","name":"Dolores Park"}]}
+"Llévame al mil cuatrocientos cincuenta de Valencia Street." -> {"actions":[{"type":"destination","name":"1450 Valencia Street"}]}
+"Llévame al 1450 de Valencia Street." -> {"actions":[{"type":"destination","name":"1450 Valencia Street"}]}
 "gaadi rok do" -> {"actions":[{"type":"stop"}]}
 
 Driver: {{turn}}`;
