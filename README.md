@@ -12,6 +12,7 @@ so this repo assumes Deepgram (Flux), a common choice for LiveKit voice agents.
 1. **A working tutor** on LiveKit, using AssemblyAI speech-to-text, Claude, and AssemblyAI text-to-speech.
 2. **An eval** that plays the same 25 recorded learner clips through AssemblyAI and Deepgram and scores them on what matters for a tutor.
 3. **[MIGRATION.md](MIGRATION.md)**: the one-line switch, the settings worth reviewing, and a rollout plan.
+4. **[VoiceDrive](#extra-credit-voicedrive)** (extra credit): a voice-driven 3D car for a YC-batch demo.
 
 ## Quickstart
 
@@ -189,3 +190,39 @@ Deepgram made the same miss on one of them.
 - **Scoring quirks.**
   - WER doesn't normalize numbers, so "20 años" vs "veinte años" counts as an error.
   - Clip Q07 has a false start ("When do you— when do I…") that its reference text leaves out. Both providers heard it, so it inflates both WERs on that clip.
+
+## Extra credit: VoiceDrive
+
+A short demo for the newest YC batch. You drive a car on a night highway by talking to it, switching
+between English and Spanish mid-sentence, with numbers and street addresses. AssemblyAI turns each
+sentence into a car command live.
+
+```bash
+uv run python voicedrive/server.py          # keeps the API key server-side, port 8787
+cd voicedrive && npm install && npm run dev # http://localhost:5173 in Chrome
+```
+
+Hold **Space** while you talk and release when you're done. **C** switches between the chase camera and
+the driver's seat, **R** resets the road.
+
+**How it works:**
+- The browser streams the mic to AssemblyAI streaming speech-to-text with a short-lived token from
+  `server.py`. Turn detection is `manual`: releasing Space sends `ForceEndpoint`, so a turn ends the
+  moment you let go and a pause mid-sentence can't split it.
+- Each finished transcript goes to AssemblyAI's LLM Gateway (`gemma-4-31b`), which returns the command
+  as JSON (`src/commands.js` holds the prompt and checks the reply).
+- `src/drive.js` runs the car and traffic, and `src/Scene.jsx` draws them with React Three Fiber.
+- The voice layer is `src/voice.js`, under 200 lines.
+
+**What changed along the way:**
+- The streaming `llm_gateway` parameter (an LLM on every turn inside the speech-to-text socket) skipped
+  2 of 4 live turns without an error, so commands go through the LLM Gateway's chat endpoint instead.
+- With Hindi in `language_codes`, my Spanish came back in Devanagari script; with English and Spanish
+  only, it was correct. So the demo uses those two.
+
+**Credits:** car model ["CarConcept"](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/CarConcept)
+by Eric Chadwick, © 2024 Darmstadt Graphics Group GmbH, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/),
+from the Khronos glTF Sample Assets. Modified here: body recolored, glass and light materials replaced,
+interior and the bundled Khronos and 3D Commerce logos (© Khronos Group) hidden. Night HDRI "Shanghai Bund" from
+[Poly Haven](https://polyhaven.com/a/shanghai_bund), CC0. Fonts Overpass and Noto Sans Devanagari, SIL
+Open Font License.
