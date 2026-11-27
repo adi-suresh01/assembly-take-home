@@ -127,3 +127,25 @@ test("keeps a truck coming so the script has a target", () => {
   }
   expect(sawTruck).toBeGreaterThan(40);
 });
+
+test("overtake picks the open lane instead of crawling behind slow traffic", () => {
+  const slow = (z) => car({ lane: 0, z, speedMph: 49.8 });
+  const w = road([car({ kind: "truck", lane: 1, z: 60, speedMph: 47 }), slow(32), slow(55), slow(80)], 1);
+  w.player.speedMph = w.player.targetMph = 60;
+  applyActions(w, [{ type: "overtake", target: { kind: "truck" } }, { type: "cruise", speed_mph: 70 }]);
+  run(w, 30);
+  const truck = w.traffic.find((v) => v.kind === "truck");
+  expect(w.player.z).toBeGreaterThan(truck.z);
+  expect(w.player.targetMph).toBe(70);
+});
+
+test("an overtake that can't happen gives up and says so", () => {
+  const block = (lane, z) => car({ lane, z, speedMph: 47 });
+  const w = road([car({ kind: "truck", lane: 1, z: 40, speedMph: 47 }), block(0, 20), block(2, 20)], 1);
+  w.player.speedMph = w.player.targetMph = 47;
+  applyActions(w, [{ type: "overtake", target: { kind: "truck" } }, { type: "cruise", speed_mph: 70 }]);
+  run(w, 20);
+  expect(w.queue).toEqual([]);
+  expect(w.player.targetMph).toBe(70);
+  expect(w.status).toBe("Couldn't get past the truck");
+});

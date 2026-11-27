@@ -31,6 +31,7 @@ export function createWorld(seed = 1) {
   const w = {
     rand: rng(seed),
     nextId: 1,
+    time: 0, // seconds since the world started
     player: { kind: "car", lane: 1, x: laneX(1), z: 0, speedMph: 55, targetMph: 55 },
     traffic: [],
     spawnTraffic: true,
@@ -92,6 +93,15 @@ function laneIsFree(w, lane) {
     return Math.abs(dz) < need;
   });
 }
+
+// How good a lane is for passing: the speed of the nearest vehicle ahead in it (open road is best).
+function laneScore(w, lane) {
+  const p = w.player;
+  const next = w.traffic.filter((v) => v.lane === lane && v.z > p.z && v.z - p.z < 90).sort((a, b) => a.z - b.z)[0];
+  return next ? next.speedMph : Infinity;
+}
+
+const GIVE_UP_AFTER = 6; // s without closing in on the target; a stuck overtake must not block the next command
 
 function describeTarget(t) {
   return [t?.color, t?.kind ?? "car"].filter(Boolean).join(" ");
@@ -158,13 +168,24 @@ function overtake(w, a) {
       w.status = a.target ? `No ${describeTarget(a.target)} ahead` : "Nothing ahead to overtake";
       return true;
     }
-    Object.assign(a, { phase: target.lane === p.lane ? "out" : "pass", target, home: p.lane, keepMph: p.targetMph });
+    Object.assign(a, {
+      phase: target.lane === p.lane ? "out" : "pass", target, home: p.lane, keepMph: p.targetMph,
+      best: target.z - p.z, bestAt: w.time,
+    });
   }
   const t = a.target;
   if (!w.traffic.includes(t)) return true;
+  if (t.z - p.z < a.best - 2) Object.assign(a, { best: t.z - p.z, bestAt: w.time });
+  if ((a.phase === "out" || a.phase === "pass") && w.time - a.bestAt > GIVE_UP_AFTER) {
+    p.targetMph = a.keepMph;
+    w.status = `Couldn't get past the ${t.kind}`;
+    return true;
+  }
   if (a.phase === "out") {
-    const options = [p.lane - 1, p.lane + 1].filter((l) => l >= 0 && l < LANES);
-    const lane = options.find((l) => laneIsFree(w, l));
+    // Pull out into the free neighbouring lane whose traffic ahead is fastest.
+    const lane = [p.lane - 1, p.lane + 1]
+      .filter((l) => l >= 0 && l < LANES && laneIsFree(w, l))
+      .sort((x, y) => laneScore(w, y) - laneScore(w, x))[0];
     if (lane == null) {
       w.status = "Waiting for a gap";
       return false;
@@ -174,11 +195,23 @@ function overtake(w, a) {
     a.phase = "pass";
   }
   if (a.phase === "pass") {
-    p.targetMph = Math.max(a.keepMph, t.speedMph + 15);
-    if (p.z > t.z + (len(t) + len(p)) / 2 + 8) a.phase = a.home === t.lane ? "back" : "done";
+    p.targetMph = Math.min(120, Math.max(a.keepMph, t.speedMph + 25));
+    // Stuck behind something slow mid-pass: move to a faster open lane if there is one.
+    const blocker = ahead(w, p, p.x, w.traffic);
+    const settled = Math.abs(p.x - laneX(p.lane)) < 0.05;
+    if (settled && blocker && blocker !== t && blocker.z - p.z < 35 && blocker.speedMph < p.targetMph - 5) {
+      const better = [p.lane - 1, p.lane + 1]
+        .filter((l) => l >= 0 && l < LANES && laneIsFree(w, l) && laneScore(w, l) > blocker.speedMph + 3)
+        .sort((x, y) => laneScore(w, y) - laneScore(w, x))[0];
+      if (better != null) p.lane = better;
+    }
+    const margin = p.lane === t.lane || a.home === t.lane ? (len(t) + len(p)) / 2 + 8 : (len(t) + len(p)) / 2 + 2;
+    if (p.z > t.z + margin) a.phase = a.home === t.lane ? "back" : "done";
   }
   if (a.phase === "back") {
-    if (laneIsFree(w, a.home)) {
+    a.backSince ??= w.time;
+    if (laneIsFree(w, a.home) || w.time - a.backSince > 10) {
+      if (!laneIsFree(w, a.home)) a.home = p.lane; // stay in the passing lane rather than wait forever
       p.lane = a.home;
       a.phase = "done";
     } else w.status = "Waiting for a gap";
@@ -200,6 +233,7 @@ function moveSpeed(v, wantMs, dt) {
 
 export function step(w, dt) {
   const p = w.player;
+  w.time += dt;
 
   // Voice commands, one at a time.
   if (!w.current && w.queue.length) w.current = { ...w.queue.shift() };
