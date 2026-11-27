@@ -212,7 +212,7 @@ the driver's seat, **R** resets the road.
 - Each finished transcript goes to AssemblyAI's LLM Gateway (`gemma-4-31b`), which returns the command
   as JSON (`src/commands.js` holds the prompt and checks the reply).
 - `src/drive.js` runs the car and traffic, and `src/Scene.jsx` draws them with React Three Fiber.
-- The voice layer is `src/voice.js`, about 150 lines.
+- The voice layer is `src/voice.js`, under 200 lines.
 
 **What changed along the way:**
 - The streaming `llm_gateway` parameter (an LLM on every turn inside the speech-to-text socket) skipped
