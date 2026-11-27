@@ -239,3 +239,10 @@ async def test_live_stream_smoke(provider, key):
     cfg = yaml.safe_load(open("config.yaml"))
     r = await STREAMERS[provider](read_pcm16(clip), cfg[provider], cfg["languages"])
     assert r.error is None and r.turns and "estacion" in normalize(r.text)
+
+
+def test_token_request_is_short_lived_streaming():
+    from voicedrive.server import token_request_body
+    body = token_request_body()
+    assert body["product"] == "streaming"
+    assert 1 <= body["expires_in_seconds"] <= 60

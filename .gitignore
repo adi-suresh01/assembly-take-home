@@ -13,3 +13,5 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 results/live_turns.jsonl
+voicedrive/node_modules/
+voicedrive/dist/
