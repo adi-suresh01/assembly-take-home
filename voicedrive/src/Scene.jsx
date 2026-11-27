@@ -41,6 +41,11 @@ function useCarFactory() {
     const body = scene.clone(true);
     body.traverse((o) => {
       if (/^(Interior|Engine)/.test(o.name)) o.visible = false;
+      // The file carries Khronos trademark logos (plate, steering emblem); keep them out of the demo.
+      if (o.name === "License Plate" || o.name === "InteriorSteeringEmblem" || o.material?.name === "License") {
+        o.visible = false;
+        o.userData.logo = true;
+      }
       if (!o.isMesh) return;
       const n = o.material.name || "";
       if (n === "Glass" || n === "Mirror") o.material = glass;
@@ -53,7 +58,7 @@ function useCarFactory() {
     body.position.y = -box.min.y;
     return (color, { interior = false } = {}) => {
       const car = template.clone(true);
-      if (interior) car.traverse((o) => /^(Interior|Engine)/.test(o.name) && (o.visible = true));
+      if (interior) car.traverse((o) => /^(Interior|Engine)/.test(o.name) && !o.userData.logo && (o.visible = true));
       car.userData.setPaint = (c) => car.traverse((o) => o.userData.paint && (o.material = paints[c] ?? paints.white));
       car.userData.setPaint(color);
       return car;

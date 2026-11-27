@@ -220,7 +220,9 @@ the driver's seat, **R** resets the road.
 - With Hindi in `language_codes`, my Spanish came back in Devanagari script; with English and Spanish
   only, it was correct. So the demo uses those two.
 
-**Credits:** car model "CarConcept" from the Khronos glTF Sample Assets, © 2024 Darmstadt Graphics
-Group GmbH, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Night HDRI "Shanghai Bund" from
+**Credits:** car model ["CarConcept"](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/CarConcept)
+by Eric Chadwick, © 2024 Darmstadt Graphics Group GmbH, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/),
+from the Khronos glTF Sample Assets. Modified here: body recolored, glass and light materials replaced,
+interior and the bundled Khronos and 3D Commerce logos (© Khronos Group) hidden. Night HDRI "Shanghai Bund" from
 [Poly Haven](https://polyhaven.com/a/shanghai_bund), CC0. Fonts Overpass and Noto Sans Devanagari, SIL
 Open Font License.

@@ -1,8 +1,8 @@
-// What the car understands. AssemblyAI runs LLM_PROMPT on every finished turn (llm_gateway),
-// with {{turn}} replaced by the transcript; parseCommand checks what comes back.
+// What the car understands. Each finished turn goes to AssemblyAI's LLM Gateway with LLM_PROMPT,
+// {{turn}} replaced by the transcript; parseCommand checks what comes back.
 
 export const LLM_PROMPT = `You turn a driver's spoken command into JSON for a car on a 4-lane highway.
-The driver mixes English, Spanish and Hindi freely, sometimes in one sentence. Resolve number words
+The driver mixes English and Spanish freely, sometimes in one sentence (Hindi too, now and then). Resolve number words
 in any of the three languages (sattar = 70, setenta y dos = 72, sixty-five = 65) and self-corrections
 (use the last value the driver settles on). Write addresses as number then street, e.g. "1450 Valencia Street".
 
@@ -62,6 +62,7 @@ function clean(a) {
 
 // The LLM's reply text -> {actions} or null. Tolerates code fences and prose around the JSON.
 export function parseCommand(content) {
+  if (typeof content !== "string") return null;
   const start = content.indexOf("{");
   const end = content.lastIndexOf("}");
   if (start < 0 || end <= start) return null;

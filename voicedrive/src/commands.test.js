@@ -43,3 +43,9 @@ group("describe", () => {
 test("prompt has the transcript slot", () => {
   expect(LLM_PROMPT).toContain("{{turn}}");
 });
+
+test("anything that isn't text is not a command", () => {
+  expect(parseCommand(null)).toBeNull();
+  expect(parseCommand(undefined)).toBeNull();
+  expect(parseCommand({ actions: [] })).toBeNull();
+});

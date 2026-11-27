@@ -14,7 +14,7 @@ const WORKLET = `registerProcessor("tap", class extends AudioWorkletProcessor {
 });`;
 
 export function createVoice({
-  model, languages = ["en", "es", "hi"], keyterms = [], record = false,
+  model, languages = ["en", "es"], keyterms = [], record = false,
   onPartial, onFinal, onCommand, onState, onError, onEvent = () => {},
 }) {
   let ws = null;
