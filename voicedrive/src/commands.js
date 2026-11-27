@@ -19,6 +19,7 @@ Reply with JSON only, no prose: {"actions":[...]} with the actions in the order 
 Examples:
 "Lane left." -> {"actions":[{"type":"lane","direction":"left"}]}
 "Cámbiate al carril derecho." -> {"actions":[{"type":"lane","direction":"right"}]}
+"Oye, pasa a ese camión and then cruise at seventy." -> {"actions":[{"type":"overtake","target":{"color":null,"kind":"truck"}},{"type":"cruise","speed_mph":70}]}
 "Oye, pasa a ese camión, phir speed sattar kar do." -> {"actions":[{"type":"overtake","target":{"color":null,"kind":"truck"}},{"type":"cruise","speed_mph":70}]}
 "Un poquito más rápido. No, actually, setenta y dos." -> {"actions":[{"type":"cruise","speed_mph":72}]}
 "Take me to Dolores Park." -> {"actions":[{"type":"destination","name":"Dolores Park"}]}
