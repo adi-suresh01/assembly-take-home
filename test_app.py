@@ -254,3 +254,52 @@ def test_command_request_forwards_prompt_to_llm_gateway():
     assert body["model"] == "gemma-4-31b"
     assert body["messages"] == [{"role": "user", "content": "Driver: lane left"}]
     assert 0 < body["max_tokens"] <= 300
+
+
+def test_server_only_answers_the_local_app():
+    from voicedrive.server import request_problem
+    assert request_problem({"Host": "localhost:5173", "Origin": "http://localhost:5173"}) is None
+    assert request_problem({"Host": "127.0.0.1:8787"}) is None
+    assert request_problem({"Host": "evil.example:8787"})  # DNS rebinding
+    assert request_problem({"Host": "localhost:5173", "Origin": "https://evil.example"})  # another site's page
+
+
+def test_command_proxy_only_runs_known_models_and_short_prompts():
+    from voicedrive.server import command_problem
+    assert command_problem({"model": "gemma-4-31b", "prompt": "Driver: lane left"}) is None
+    assert command_problem({"model": "claude-opus-5-5", "prompt": "hi"})
+    assert command_problem({"model": "gemma-4-31b", "prompt": "x" * 7000})
+    assert command_problem({"model": "gemma-4-31b"})
+
+
+def test_clip_saving_is_off_unless_asked_for(monkeypatch):
+    from voicedrive.server import clips_enabled
+    monkeypatch.delenv("VOICEDRIVE_RECORD", raising=False)
+    assert not clips_enabled()
+    monkeypatch.setenv("VOICEDRIVE_RECORD", "1")
+    assert clips_enabled()
+
+
+def test_command_failure_still_answers_with_json(monkeypatch):
+    import threading
+    import urllib.error
+    import urllib.request
+    from http.server import ThreadingHTTPServer
+    from voicedrive import server
+    def boom(*_):
+        raise TimeoutError("read timed out")
+    monkeypatch.setattr(server, "run_command", boom)
+    monkeypatch.setenv("ASSEMBLYAI_API_KEY", "test")
+    srv = ThreadingHTTPServer(("localhost", 0), server.Handler)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    try:
+        req = urllib.request.Request(
+            f"http://localhost:{srv.server_port}/command", method="POST",
+            data=json.dumps({"model": "gemma-4-31b", "prompt": "Driver: lane left"}).encode(),
+            headers={"Content-Type": "application/json"})
+        with pytest.raises(urllib.error.HTTPError) as err:
+            urllib.request.urlopen(req, timeout=5)
+        assert err.value.code == 502
+        assert "timed out" in json.load(err.value)["error"]
+    finally:
+        srv.shutdown()
